@@ -25,13 +25,13 @@ from typing import Union
 class MultiAgentDebateCrew:
     """Classe principale pour orchestrer le système de débat multi-agent."""
 
-    def __init__(self, model_name: str = "deepseek-chat", temperature: float = 0.7):
+    def __init__(self, model_name: str = "deepseek/deepseek-chat", temperature: float = 0.7):
         """
         Initialise le crew de débat multi-agent.
 
         Args:
-            model_name: Le nom du modèle à utiliser (default: deepseek-chat)
-                       Pour OpenRouter: "deepseek/deepseek-chat"
+            model_name: Le nom du modèle à utiliser (default: deepseek/deepseek-chat)
+                       Pour OpenRouter: "deepseek/deepseek-chat" (recommandé)
                        Pour DeepSeek direct: "deepseek-chat"
                        Pour OpenAI: "gpt-4", "gpt-3.5-turbo"
             temperature: La température pour la génération (default: 0.7)
