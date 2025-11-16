@@ -112,13 +112,14 @@ class DebateTasks:
         """
         return Task(
             description=f"""
-            CAHIER DES CHARGES :
-            {cahier_des_charges}
+            CONTEXTE DU CAHIER DES CHARGES :
+            Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
+            ou référez-vous à l'analyse détaillée de l'Innovateur et du Stratège pour les exigences.
 
             MISSION :
             Vous devez critiquer de manière constructive les 3 propositions présentées.
 
-            CONTEXTE :
+            CONTEXTE DES PROPOSITIONS :
             Référez-vous aux propositions initiales fournies par l'Innovateur et le Stratège
             dans la tâche précédente (disponibles automatiquement via le contexte).
 
@@ -215,8 +216,9 @@ class DebateTasks:
         """
         return Task(
             description=f"""
-            CAHIER DES CHARGES :
-            {cahier_des_charges}
+            CONTEXTE DU CAHIER DES CHARGES :
+            Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
+            pour les exigences spécifiques si nécessaire.
 
             MISSION :
             Vous devez répondre aux critiques et améliorer les propositions.
@@ -329,8 +331,9 @@ class DebateTasks:
         """
         return Task(
             description=f"""
-            CAHIER DES CHARGES :
-            {cahier_des_charges}
+            CONTEXTE DU CAHIER DES CHARGES :
+            Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
+            pour les exigences spécifiques si nécessaire.
 
             MISSION COLLECTIVE :
             Chaque agent doit challenger les propositions V2 depuis son angle d'expertise.
@@ -465,8 +468,9 @@ class DebateTasks:
         """
         return Task(
             description=f"""
-            CAHIER DES CHARGES :
-            {cahier_des_charges}
+            CONTEXTE DU CAHIER DES CHARGES :
+            Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
+            pour les exigences spécifiques si nécessaire.
 
             MISSION COLLECTIVE - CONVERGENCE OBLIGATOIRE :
             Vous DEVEZ trouver des compromis et converger vers UNE solution finale unique.
@@ -639,8 +643,9 @@ class DebateTasks:
         """
         return Task(
             description=f"""
-            CAHIER DES CHARGES :
-            {cahier_des_charges}
+            CONTEXTE DU CAHIER DES CHARGES :
+            Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
+            pour valider chaque exigence point par point dans votre synthèse finale.
 
             HISTORIQUE COMPLET DU DÉBAT :
             Vous avez accès à tous les échanges précédents via le contexte.
