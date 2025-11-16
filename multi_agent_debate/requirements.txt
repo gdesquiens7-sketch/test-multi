@@ -5,6 +5,9 @@
 crewai>=0.98.0
 crewai-tools>=0.12.0
 
+# LiteLLM - Gestion unifiée des LLM (requis par CrewAI 0.98.0)
+litellm>=1.50.0
+
 # LangChain - Intégration LLM
 langchain>=0.3.0
 langchain-openai>=0.2.0
