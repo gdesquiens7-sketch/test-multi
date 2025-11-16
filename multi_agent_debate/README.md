@@ -268,28 +268,61 @@ pip install -r requirements.txt
 
 ## ⚙️ CONFIGURATION
 
-### Variables d'environnement
+### Option 1 : OpenRouter (RECOMMANDÉ) 🌟
 
-Créez un fichier `.env` à la racine du projet :
+**OpenRouter** vous donne accès à **tous les LLM** avec une seule clé API !
+
+1. Créez un compte gratuit sur **https://openrouter.ai/**
+2. Générez une clé API sur **https://openrouter.ai/keys**
+3. Créez votre fichier `.env` :
 
 ```bash
-# Pour DeepSeek
-OPENAI_API_KEY=votre-api-key-deepseek
-OPENAI_API_BASE=https://api.deepseek.com
-
-# OU pour OpenAI
-OPENAI_API_KEY=votre-api-key-openai
-OPENAI_API_BASE=https://api.openai.com/v1
+# Configuration OpenRouter (RECOMMANDÉ)
+OPENAI_API_KEY=sk-or-v1-votre-cle-openrouter
+OPENAI_API_BASE=https://openrouter.ai/api/v1
+MODEL_NAME=deepseek/deepseek-chat  # Pas cher et performant
 ```
 
-### Configuration du modèle
+**Modèles disponibles via OpenRouter** :
+- `deepseek/deepseek-chat` - Excellent rapport qualité/prix ($0.14/M tokens)
+- `anthropic/claude-3.5-sonnet` - Meilleure qualité ($3/M tokens)
+- `openai/gpt-4-turbo` - GPT-4 ($10/M tokens)
+- `meta-llama/llama-3.1-70b-instruct` - Open-source puissant ($0.59/M tokens)
+- `google/gemini-flash-1.5` - **Gratuit** !
 
-Dans `debate_crew.py`, vous pouvez modifier :
+📖 **Guide complet** : Consultez `OPENROUTER_SETUP.md`
+
+### Option 2 : DeepSeek Direct
+
+```bash
+OPENAI_API_KEY=votre-api-key-deepseek
+OPENAI_API_BASE=https://api.deepseek.com
+MODEL_NAME=deepseek-chat
+```
+
+### Option 3 : OpenAI Direct
+
+```bash
+OPENAI_API_KEY=votre-api-key-openai
+OPENAI_API_BASE=https://api.openai.com/v1
+MODEL_NAME=gpt-4
+```
+
+### Configuration du modèle et température
+
+Via variables d'environnement (`.env`) :
+
+```bash
+MODEL_NAME=deepseek/deepseek-chat  # Changez selon votre provider
+TEMPERATURE=0.7                     # 0.0 = déterministe, 1.0 = créatif
+```
+
+Ou directement dans le code :
 
 ```python
 debate_system = MultiAgentDebateCrew(
-    model_name="deepseek-chat",  # ou "gpt-4", "gpt-3.5-turbo", etc.
-    temperature=0.7               # 0.0 à 1.0
+    model_name="deepseek/deepseek-chat",
+    temperature=0.7
 )
 ```
 

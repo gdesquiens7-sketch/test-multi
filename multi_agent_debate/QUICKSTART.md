@@ -23,22 +23,47 @@ cp .env.example .env
 nano .env  # ou code .env, vim .env, etc.
 ```
 
-Dans le fichier `.env`, décommentez et remplissez :
+#### Option 1 : OpenRouter (RECOMMANDÉ) 🌟
+
+**Accédez à TOUS les LLM avec une seule clé !**
+
+1. Créez un compte gratuit sur **https://openrouter.ai/**
+2. Générez une clé sur **https://openrouter.ai/keys**
+3. Dans `.env`, configurez :
 
 ```bash
-# Pour DeepSeek (moins cher)
-OPENAI_API_KEY=sk-votre-cle-deepseek
-OPENAI_API_BASE=https://api.deepseek.com
-
-# OU pour OpenAI
-# OPENAI_API_KEY=sk-votre-cle-openai
-# OPENAI_API_BASE=https://api.openai.com/v1
+# OpenRouter (recommandé - accès à tous les modèles)
+OPENAI_API_KEY=sk-or-v1-votre-cle-openrouter
+OPENAI_API_BASE=https://openrouter.ai/api/v1
+MODEL_NAME=deepseek/deepseek-chat  # Ou autre modèle
 ```
 
-**Où obtenir une clé API ?**
+**Modèles populaires** :
+- `deepseek/deepseek-chat` - Pas cher et performant
+- `anthropic/claude-3.5-sonnet` - Meilleure qualité
+- `google/gemini-flash-1.5` - **Gratuit** !
 
-- **DeepSeek** : https://platform.deepseek.com/ (moins cher, performant)
-- **OpenAI** : https://platform.openai.com/api-keys (GPT-4, GPT-3.5)
+📖 **Guide détaillé** : `OPENROUTER_SETUP.md`
+
+#### Option 2 : DeepSeek Direct
+
+```bash
+OPENAI_API_KEY=sk-votre-cle-deepseek
+OPENAI_API_BASE=https://api.deepseek.com
+MODEL_NAME=deepseek-chat
+```
+
+Obtenir une clé : https://platform.deepseek.com/
+
+#### Option 3 : OpenAI Direct
+
+```bash
+OPENAI_API_KEY=sk-votre-cle-openai
+OPENAI_API_BASE=https://api.openai.com/v1
+MODEL_NAME=gpt-4
+```
+
+Obtenir une clé : https://platform.openai.com/api-keys
 
 ### 3. Lancer l'exemple
 
