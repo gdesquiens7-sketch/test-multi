@@ -115,11 +115,12 @@ class DebateTasks:
             CAHIER DES CHARGES :
             {cahier_des_charges}
 
-            PROPOSITIONS À ANALYSER :
-            {{{{multi_perspective_proposal}}}}
-
             MISSION :
             Vous devez critiquer de manière constructive les 3 propositions présentées.
+
+            CONTEXTE :
+            Référez-vous aux propositions initiales fournies par l'Innovateur et le Stratège
+            dans la tâche précédente (disponibles automatiquement via le contexte).
 
             LE PRAGMATIQUE doit :
             - Vérifier que les propositions respectent TOUTES les contraintes du cahier des charges
@@ -217,11 +218,12 @@ class DebateTasks:
             CAHIER DES CHARGES :
             {cahier_des_charges}
 
-            CRITIQUES REÇUES :
-            {{{{first_critique_round}}}}
-
             MISSION :
             Vous devez répondre aux critiques et améliorer les propositions.
+
+            CONTEXTE :
+            Référez-vous au rapport de critique croisée de la tâche précédente
+            (disponible automatiquement via le contexte).
 
             L'INNOVATEUR doit :
             - Répondre point par point aux critiques reçues
@@ -330,11 +332,12 @@ class DebateTasks:
             CAHIER DES CHARGES :
             {cahier_des_charges}
 
-            PROPOSITIONS V2 À CHALLENGER :
-            {{{{defense_and_improvement}}}}
-
             MISSION COLLECTIVE :
             Chaque agent doit challenger les propositions V2 depuis son angle d'expertise.
+
+            CONTEXTE :
+            Référez-vous aux propositions V2 améliorées de la tâche précédente
+            (disponibles automatiquement via le contexte).
             Vous devez DÉLÉGUER aux autres agents pour obtenir leurs perspectives.
 
             CHAQUE AGENT doit :
@@ -465,11 +468,12 @@ class DebateTasks:
             CAHIER DES CHARGES :
             {cahier_des_charges}
 
-            ÉTAT DU DÉBAT :
-            {{{{intensive_challenge}}}}
-
             MISSION COLLECTIVE - CONVERGENCE OBLIGATOIRE :
             Vous DEVEZ trouver des compromis et converger vers UNE solution finale unique.
+
+            CONTEXTE :
+            Référez-vous aux résultats du challenge intensif de la tâche précédente
+            (disponibles automatiquement via le contexte).
             Utilisez la DÉLÉGATION pour impliquer tous les agents dans la négociation.
 
             RÈGLES STRICTES :
