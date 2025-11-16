@@ -124,14 +124,14 @@ class MultiAgentDebateCrew:
             metadata={"source": "cahier_des_charges", "type": "requirements"}
         )
 
-        # Configuration de l'embedder pour utiliser OpenRouter
-        # On passe explicitement api_key et api_base (comme pour Azure dans la doc)
+        # Configuration de l'embedder pour utiliser OpenAI directement
+        # Utilise une vraie clé OpenAI (pas OpenRouter) pour les embeddings
+        # Coût : ~$0.002 par débat (négligeable)
         embedder_config = {
             "provider": "openai",
             "config": {
                 "model": "text-embedding-3-small",
-                "api_key": os.getenv("OPENROUTER_API_KEY"),
-                "api_base": "https://openrouter.ai/api/v1"
+                "api_key": os.getenv("OPENAI_API_KEY")
             }
         }
 
