@@ -124,6 +124,17 @@ class MultiAgentDebateCrew:
             metadata={"source": "cahier_des_charges", "type": "requirements"}
         )
 
+        # Configuration de l'embedder pour utiliser OpenRouter
+        # On passe explicitement api_key et api_base (comme pour Azure dans la doc)
+        embedder_config = {
+            "provider": "openai",
+            "config": {
+                "model": "text-embedding-3-small",
+                "api_key": os.getenv("OPENROUTER_API_KEY"),
+                "api_base": "https://openrouter.ai/api/v1"
+            }
+        }
+
         # Création du Crew avec processus hiérarchique
         # Note: Le manager_agent ne doit PAS être dans la liste agents (CrewAI 0.98.0)
         crew = Crew(
@@ -147,10 +158,7 @@ class MultiAgentDebateCrew:
             verbose=True,
             memory=True,  # Système de mémoire pour historique des conversations
             knowledge_sources=[cahier_knowledge],  # RAG : Cahier accessible par requête sémantique
-            embedder={
-                "provider": "openai",
-                "config": {"model": "text-embedding-3-small"}
-            }
+            embedder=embedder_config
         )
 
         return crew
