@@ -1,12 +1,25 @@
-# 🔧 Guide de Dépannage - Problème `verbose=2`
+# 🔧 Guide de Dépannage - Problèmes CrewAI 0.98.0
 
-## ❌ Erreur rencontrée
+## ❌ Erreurs courantes
+
+### Erreur 1 : `verbose` doit être un booléen
 
 ```
 1 validation error for Crew
 verbose
   Input should be a valid boolean, unable to interpret input [type=bool_parsing, input_value=2, input_type=int]
 ```
+
+### Erreur 2 : Manager agent dans la liste agents
+
+```
+1 validation error for Crew
+Manager agent should not be included in agents list. [type=manager_agent_in_agents, ...]
+```
+
+**Cause** : Dans CrewAI 0.98.0, le `manager_agent` ne doit PAS être inclus dans la liste `agents`.
+
+**Solution** : Voir section "Solutions" ci-dessous.
 
 ---
 

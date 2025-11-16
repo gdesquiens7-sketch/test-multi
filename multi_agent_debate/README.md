@@ -166,6 +166,8 @@ DOCUMENT FINAL (Output)
 
 **Expertise** : Médiation, synthèse, gestion de débats, validation
 
+**Note importante (CrewAI 0.98.0)** : Dans le processus hiérarchique, le Facilitateur agit comme **manager** et ne fait pas partie de la liste des agents workers. Il supervise et coordonne les 4 autres agents (Innovateur, Pragmatique, Avocat du Diable, Stratège).
+
 ---
 
 ## 🔄 LE PROCESSUS DE DÉBAT

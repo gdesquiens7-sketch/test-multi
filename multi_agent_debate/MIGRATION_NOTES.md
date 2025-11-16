@@ -67,9 +67,15 @@ else:
   - Avant : 0, 1, 2 (niveaux de verbosité)
   - Après : True/False (activé/désactivé)
 
+**Structure AGENTS modifiée :**
+- ⚠️ **Le manager_agent ne doit PLUS être dans la liste `agents`**
+  - Avant (v0.28.0) : `agents=[agent1, agent2, manager]` + `manager_agent=manager`
+  - Après (v0.98.0) : `agents=[agent1, agent2]` + `manager_agent=manager`
+  - Le manager est maintenant **séparé** de la liste des agents workers
+
 **Paramètres CONSERVÉS :**
 - `process=Process.hierarchical` ✅
-- `manager_agent=self.facilitateur` ✅ (toujours valide)
+- `manager_agent=self.facilitateur` ✅ (toujours valide, mais exclu de agents)
 - `memory=True` ✅
 
 #### c) Type hints améliorés

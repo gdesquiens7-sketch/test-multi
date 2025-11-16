@@ -111,13 +111,14 @@ class MultiAgentDebateCrew:
         )
 
         # Création du Crew avec processus hiérarchique
+        # Note: Le manager_agent ne doit PAS être dans la liste agents (CrewAI 0.98.0)
         crew = Crew(
             agents=[
                 self.innovateur,
                 self.pragmatique,
                 self.avocat_du_diable,
-                self.stratege,
-                self.facilitateur
+                self.stratege
+                # self.facilitateur est le manager, donc EXCLU de la liste
             ],
             tasks=[
                 task1_multi_perspective,
@@ -128,8 +129,8 @@ class MultiAgentDebateCrew:
                 task6_synthesis
             ],
             process=Process.hierarchical,
-            manager_agent=self.facilitateur,
-            verbose=True,  # CrewAI 0.98.0: boolean uniquement (True/False)
+            manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
+            verbose=True,
             memory=True
         )
 
