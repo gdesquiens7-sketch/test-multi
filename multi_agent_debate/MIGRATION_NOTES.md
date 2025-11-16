@@ -62,10 +62,14 @@ else:
 - `max_iter=15` - N'existe plus dans l'API
 - `full_output=True` - N'existe plus dans l'API
 
+**Paramètres MODIFIÉS :**
+- `verbose=2` → `verbose=True` ⚠️ **Type changé : int → boolean**
+  - Avant : 0, 1, 2 (niveaux de verbosité)
+  - Après : True/False (activé/désactivé)
+
 **Paramètres CONSERVÉS :**
 - `process=Process.hierarchical` ✅
 - `manager_agent=self.facilitateur` ✅ (toujours valide)
-- `verbose=2` ✅
 - `memory=True` ✅
 
 #### c) Type hints améliorés

@@ -129,7 +129,7 @@ class MultiAgentDebateCrew:
             ],
             process=Process.hierarchical,
             manager_agent=self.facilitateur,
-            verbose=2,
+            verbose=True,  # CrewAI 0.98.0: boolean uniquement (True/False)
             memory=True
         )
 
