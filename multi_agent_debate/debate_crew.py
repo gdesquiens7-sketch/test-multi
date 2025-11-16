@@ -126,11 +126,12 @@ class MultiAgentDebateCrew:
 
         # Configuration de l'embedder pour utiliser OpenAI directement
         # Utilise une vraie clé OpenAI (pas OpenRouter) pour les embeddings
-        # Coût : ~$0.002 par débat (négligeable)
+        # Utilise text-embedding-ada-002 pour compatibilité maximale (toutes clés OpenAI)
+        # Coût : ~$0.0001 par 1000 tokens = ~$0.002 par débat (négligeable)
         embedder_config = {
             "provider": "openai",
             "config": {
-                "model": "text-embedding-3-small",
+                "model": "text-embedding-ada-002",
                 "api_key": os.getenv("OPENAI_API_KEY")
             }
         }
