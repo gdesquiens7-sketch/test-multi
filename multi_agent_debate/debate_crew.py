@@ -15,8 +15,7 @@ Agents :
 Process : Hierarchical (Le Facilitateur est le manager)
 """
 
-from crewai import Crew, Process
-from langchain_openai import ChatOpenAI
+from crewai import Crew, Process, LLM
 from config.agents import DebateAgents
 from config.tasks import DebateTasks
 import os
@@ -32,15 +31,19 @@ class MultiAgentDebateCrew:
 
         Args:
             model_name: Le nom du modèle à utiliser (default: deepseek-chat)
+                       Pour OpenRouter: "deepseek/deepseek-chat"
+                       Pour DeepSeek direct: "deepseek-chat"
+                       Pour OpenAI: "gpt-4", "gpt-3.5-turbo"
             temperature: La température pour la génération (default: 0.7)
         """
-        # Configuration du LLM
-        # Pour DeepSeek, utilisez une base_url compatible
-        self.llm = ChatOpenAI(
+        # Configuration du LLM via CrewAI LLM (utilise LiteLLM en interne)
+        # LiteLLM lit automatiquement OPENAI_API_KEY et OPENAI_API_BASE
+        # depuis les variables d'environnement
+        self.llm = LLM(
             model=model_name,
             temperature=temperature,
-            base_url=os.getenv("OPENAI_API_BASE", "https://api.deepseek.com"),
-            api_key=os.getenv("OPENAI_API_KEY", "")
+            api_key=os.getenv("OPENAI_API_KEY"),
+            base_url=os.getenv("OPENAI_API_BASE")
         )
 
         # Initialisation des agents
