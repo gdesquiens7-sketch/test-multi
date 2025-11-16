@@ -19,8 +19,8 @@ from crewai import Crew, Process, LLM
 from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
 from config.agents import DebateAgents
 from config.tasks import DebateTasks
+from langchain_openai import OpenAIEmbeddings
 import os
-from typing import Union
 
 
 class MultiAgentDebateCrew:
@@ -117,19 +117,27 @@ class MultiAgentDebateCrew:
             cahier_des_charges=cahier_des_charges
         )
 
+        # Création de l'embedder OpenAI (utilise OPENAI_API_KEY depuis les variables d'environnement)
+        # Selon la doc CrewAI: https://docs.crewai.com/en/concepts/knowledge
+        # L'embedder lit automatiquement OPENAI_API_KEY depuis os.environ si non spécifié
+        embedder = OpenAIEmbeddings(
+            model="text-embedding-3-small"  # Modèle d'embedding OpenAI (plus économique que ada-002)
+            # openai_api_key sera lu automatiquement depuis OPENAI_API_KEY dans .env
+        )
+
         # Création de la source de connaissance RAG pour le cahier des charges
         # Permet aux agents de faire des requêtes sémantiques sur le cahier
+        # Utilise l'embedder OpenAI configuré ci-dessus
         cahier_knowledge = StringKnowledgeSource(
             content=cahier_des_charges,
-            metadata={"source": "cahier_des_charges", "type": "requirements"}
+            metadata={"source": "cahier_des_charges", "type": "requirements"},
+            embedder=embedder
         )
 
         # Assigner le knowledge à chaque agent individuellement
-        # Ne pas passer d'embedder config, laisser ChromaDB utiliser OPENAI_API_KEY env var
-        # ChromaDB utilisera automatiquement text-embedding-ada-002 avec ta clé OpenAI
+        # Utilise l'embedder OpenAI configuré ci-dessus (lit OPENAI_API_KEY depuis .env)
         for agent in [self.innovateur, self.pragmatique, self.avocat_du_diable, self.stratege, self.facilitateur]:
             agent.knowledge_sources = [cahier_knowledge]
-            # Pas d'embedder config - utilise les defaults
 
         # Création du Crew avec processus hiérarchique
         # Note: Le manager_agent ne doit PAS être dans la liste agents (CrewAI 0.98.0)
@@ -206,6 +214,11 @@ class MultiAgentDebateCrew:
             result: L'objet CrewOutput du débat
             output_file: Le chemin du fichier de sortie
         """
+        # Créer le répertoire s'il n'existe pas
+        output_dir = os.path.dirname(output_file)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
+        
         with open(output_file, 'w', encoding='utf-8') as f:
             # CrewAI >= 0.41.0 retourne un objet CrewOutput avec l'attribut 'raw'
             if hasattr(result, 'raw'):

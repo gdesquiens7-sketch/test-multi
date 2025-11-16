@@ -16,6 +16,9 @@ langchain-community>=0.3.0
 # OpenAI / DeepSeek
 openai>=1.50.0
 
+# Embeddings locaux (gratuit, pas besoin de clé API)
+sentence-transformers>=2.2.0
+
 # Utilities
 python-dotenv>=1.0.0
 pydantic>=2.9.0

@@ -36,13 +36,14 @@ def main():
 
     # Exemple de cahier des charges
     cahier_des_charges = """
-CAHIER DES CHARGES : Idée de Revenu Complémentaire Originale
+CAHIER DES CHARGES : CAHIER DES CHARGES - Projet Revenu Complémentaire Original
 
-## ## 1. CONTEXTE DU PROJET
+## 1. CONTEXTE DU PROJET
 
 **Porteur de projet** : Grégoire
-- Situation : Salarié cherchant un complément de revenu
-- Environnement : Accès à un ordinateur et internet depuis un bureau
+- Profil : Chef de projet / Product Manager avec expertise en IA, développement (AppSheet, React, Python, VBA)
+- Contexte : En poste à temps plein, recherche complément de revenu compatible avec activité principale
+- Environnement de travail : Bureau avec ordinateur et connexion internet
 
 **Problématique** : 
 Trouver une source de revenu complémentaire viable, originale et rapidement rentable, nécessitant un investissement minimal et réalisable depuis un poste de travail.
@@ -55,7 +56,7 @@ Trouver une source de revenu complémentaire viable, originale et rapidement ren
 Identifier UNE idée de génération de revenu complémentaire originale, faisable et rentable rapidement.
 
 ### Objectifs Secondaires
-- Maximiser l'originalité (se démarquer de TOUT ce qui est classique)
+- Maximiser l'originalité (se démarquer des idées classiques type dropshipping, freelance générique, etc.)
 - Minimiser le temps de mise en marché (max 1 semaine)
 - Assurer la viabilité à moyen terme (pas un coup one-shot)
 - Préserver la sécurité financière et légale
@@ -67,21 +68,20 @@ Identifier UNE idée de génération de revenu complémentaire originale, faisab
 ### EXI-001 : Originalité Forte
 **Priorité** : CRITIQUE
 - L'idée DOIT être originale et peu courante sur le marché
-- Elle ne DOIT PAS être une variation évidente d'idées mainstream
-- Critère de validation : "Cette idée surprend et fait dire 'je n'y aurais jamais pensé'"
-- **AUCUNE LIMITE DE DOMAINE** : digital, physique, service, créatif, niche bizarre, tout est acceptable
+- Elle ne DOIT PAS être une variation évidente d'idées mainstream (freelancing, dropshipping, sondages rémunérés, affiliation classique)
+- Critère de validation : "Cette idée est difficilement trouvable via une recherche Google standard"
 
 ### EXI-002 : Exécution Bureau
 **Priorité** : CRITIQUE
 - L'activité DOIT être 100% réalisable depuis un bureau avec ordinateur
-- Pas de déplacements physiques obligatoires
-- Si logistique physique légère acceptable (ex: envoyer 1-2 colis/semaine depuis chez soi), mais pas de stock ni d'espace requis
+- Pas de déplacements physiques requis
+- Pas de logistique matérielle (stockage, envoi de colis, etc.)
 
 ### EXI-003 : Investissement Minimal
 **Priorité** : CRITIQUE
 - Budget de démarrage : **MAX 10€**
-- Pas d'achats d'équipement majeur
-- Pas d'abonnements mensuels coûteux (sauf si couverts par les 10€ du premier mois)
+- Pas d'achats d'équipement supplémentaire
+- Pas d'abonnements mensuels obligatoires (sauf si couverts par les 10€ du premier mois)
 
 ### EXI-004 : Génération Rapide de Revenus
 **Priorité** : CRITIQUE
@@ -104,19 +104,24 @@ Identifier UNE idée de génération de revenu complémentaire originale, faisab
 ### EXI-006 : Scalabilité
 **Priorité** : HAUTE
 - L'idée DEVRAIT permettre une augmentation progressive des revenus
-- Potentiel de croissance identifié
+- Potentiel d'automatisation partielle souhaité
 
 ### EXI-007 : Compatibilité avec Emploi Principal
 **Priorité** : HAUTE
 - Temps requis : Max 5-10h/semaine pour démarrer
-- Pas de conflit d'intérêt évident avec un emploi de bureau classique
+- Pas de conflit d'intérêt avec l'employeur actuel
+- Pas de clause de non-concurrence violée
 - Horaires flexibles (compatible avec emploi 9h-18h)
 
-### EXI-008 : Accessibilité
+### EXI-008 : Compétences Mobilisables
 **Priorité** : MOYENNE
-- L'idée DEVRAIT être accessible sans compétence ultra-spécialisée
-- Si compétence requise, elle doit être appréhendable rapidement (formation en ligne gratuite, tutoriels, etc.)
-- **PAS DE RESTRICTION DE DOMAINE** : l'idée peut être dans n'importe quel secteur
+- Idéalement, l'idée DEVRAIT exploiter les compétences de Grégoire :
+  - IA et prompt engineering
+  - Développement (Python, React, AppSheet, VBA)
+  - Product Management
+  - UX/UI
+  - Automation
+- Mais ce n'est PAS une exigence bloquante si l'originalité compense
 
 ### EXI-009 : Durabilité
 **Priorité** : MOYENNE
@@ -130,7 +135,7 @@ Identifier UNE idée de génération de revenu complémentaire originale, faisab
 ### Contraintes Budgétaires
 - Budget total phase 1 : **10€ max**
 - Pas de crédit ou prêt possible
-- Équipement déjà disponible : ordinateur, connexion internet
+- Pas d'investissement matériel requis
 
 ### Contraintes Temporelles
 - Délai d'implémentation : **Max 7 jours**
@@ -138,7 +143,8 @@ Identifier UNE idée de génération de revenu complémentaire originale, faisab
 - Premiers revenus : **Sous 7 jours**
 
 ### Contraintes Techniques
-- Équipement disponible : Ordinateur standard, connexion internet
+- Équipement disponible : Ordinateur, connexion internet
+- Pas d'achat de matériel supplémentaire
 - Utilisation d'outils gratuits ou couverts par le budget de 10€
 
 ### Contraintes Légales
@@ -147,8 +153,8 @@ Identifier UNE idée de génération de revenu complémentaire originale, faisab
 - Pas de statut juridique complexe requis au démarrage
 
 ### Contraintes Environnementales
-- Travail depuis bureau (domicile)
-- Pas de déplacements obligatoires
+- Travail depuis bureau (domicile ou bureau professionnel selon moments)
+- Pas de déplacements
 - Pas de rencontres physiques obligatoires
 
 ---
@@ -168,7 +174,6 @@ Identifier UNE idée de génération de revenu complémentaire originale, faisab
 3. **Sécurité** : Aucun risque financier ou réputationnel
 4. **Pérennité** : Viabilité sur 6+ mois
 5. **Scalabilité** : Potentiel de croissance identifié
-6. **Effet WOW** : L'idée doit surprendre et être vraiment différente
 
 ---
 
@@ -183,20 +188,17 @@ Le système multi-agent doit produire :
    - Description détaillée du concept
    - En quoi c'est original (benchmark vs alternatives)
    - Proposition de valeur claire
-   - **Pourquoi personne n'y pense** (analyse de la non-évidence)
 
 2. **Plan d'Action Semaine 1** (très détaillé)
    - Jour par jour : quoi faire exactement
    - Checklist des actions
    - Ressources nécessaires (liens, outils, etc.)
    - Budget détaillé (comment dépenser les 10€)
-   - Compétences à acquérir si nécessaire (avec ressources gratuites)
 
 3. **Stratégie de Génération de Revenus**
-   - Comment les premiers revenus arrivent concrètement
+   - Comment les premiers revenus arrivent
    - Timeline réaliste
    - Montants attendus (fourchette basse/haute)
-   - Qui paie et pourquoi
 
 4. **Validation de Conformité**
    - Conformité légale (déclaration, fiscalité)
@@ -212,7 +214,6 @@ Le système multi-agent doit produire :
 - Argumentaire des débats (pourquoi cette idée vs autres)
 - Liste des idées rejetées et pourquoi
 - Risques identifiés et mitigations
-- **Analyse de la concurrence** (qui fait déjà ça ? personne ? pourquoi ?)
 
 ---
 
@@ -221,23 +222,13 @@ Le système multi-agent doit produire :
 **Ce qui n'est PAS recherché** :
 - ❌ Idées classiques type freelancing générique, dropshipping, affiliation Amazon standard
 - ❌ MLM / Marketing de réseau / Systèmes pyramidaux
-- ❌ Sondages rémunérés et micro-tâches sous-payées type Mechanical Turk
+- ❌ Sondages rémunérés et micro-tâches sous-payées
 - ❌ Trading / Crypto / Paris sportifs / Jeux d'argent
 - ❌ Activités nécessitant investissement > 10€
+- ❌ Activités nécessitant déplacements physiques
 - ❌ Activités dans zones grises légales
 - ❌ Création de contenu adulte / OnlyFans et similaires
-- ❌ Revente de produits physiques classique (sauf si angle ultra-original)
-
-**Mais TOUT LE RESTE est ouvert** :
-- ✅ Niches bizarres et inattendues
-- ✅ Services atypiques
-- ✅ Micro-produits originaux (digitaux ou physiques)
-- ✅ Intermédiations créatives
-- ✅ Valorisation de déchets/rebuts
-- ✅ Services hyper-spécialisés
-- ✅ Arbitrages de marchés nichés
-- ✅ Créations artistiques/artisanales vendables en ligne
-- ✅ **Tout ce qui sort des sentiers battus**
+- ❌ Revente de produits physiques (sauf si 100% digital)
 
 ---
 
@@ -251,7 +242,7 @@ Pour valider le succès de l'idée retenue :
 | Revenus générés | > 0€ | ≥ 50€ | ≥ 200€ |
 | Temps investi | ≤ 10h | ≤ 40h | ≤ 120h |
 | ROI | Positif | > 100% | > 200% |
-| Score originalité | ≥ 8/10 | - | - |
+| Score originalité | 8/10 | - | - |
 
 ---
 
@@ -259,35 +250,16 @@ Pour valider le succès de l'idée retenue :
 
 Les agents devront impérativement répondre à :
 
-1. **Pourquoi cette idée est-elle vraiment originale ?** (benchmark obligatoire - prouver que c'est rare/inexistant)
-2. **Comment générer les premiers revenus en 7 jours exactement ?** (plan détaillé minute par minute si besoin)
+1. **Pourquoi cette idée est-elle vraiment originale ?** (benchmark obligatoire)
+2. **Comment générer les premiers revenus en 7 jours exactement ?** (plan détaillé)
 3. **Quels sont les risques cachés ?** (juridiques, financiers, réputationnels)
 4. **Comment scaler après le premier mois ?** (stratégie de croissance)
 5. **Quelle est la pire chose qui peut arriver ?** (analyse worst-case scenario)
-6. **Qui sont les clients/payeurs ?** (profil précis, où les trouver)
-7. **Pourquoi personne ne fait ça déjà ?** (analyse de la barrière à l'entrée ou de l'angle mort du marché)
-8. **Quelles compétences faut-il développer ?** (et comment les acquérir gratuitement/rapidement)
+6. **Pourquoi Grégoire spécifiquement peut réussir dans cette idée ?** (fit avec profil)
 
 ---
 
-## 11. ENCOURAGEMENT À L'ORIGINALITÉ
-
-**MESSAGE AUX AGENTS** :
-
-🚀 **Pensez VRAIMENT en dehors des sentiers battus !**
-
-- Ne vous censurez pas sur des idées qui semblent "bizarres" - c'est justement ce qu'on cherche
-- Explorez des niches que personne ne regarde
-- Pensez aux problèmes que PERSONNE ne résout
-- Regardez les marchés adjacents, les angles morts, les micro-communautés
-- L'idée peut sembler "petite" tant qu'elle est ORIGINALE et RENTABLE
-- Inspirez-vous de success stories atypiques (ex: vendre des noms de domaine expirés, créer des sons pour TikTok, vendre des templates Notion ultra-nichés, etc.)
-
-**La meilleure idée sera celle qui fait dire : "Ah oui, c'est con, mais ça marche !"**
-
----
-
-## 12. VALIDATION FINALE
+## 11. VALIDATION FINALE
 
 L'idée sera considérée comme validée SI ET SEULEMENT SI :
 
@@ -296,8 +268,7 @@ L'idée sera considérée comme validée SI ET SEULEMENT SI :
 ✅ Score originalité ≥ 8/10  
 ✅ Plan d'action semaine 1 détaillé et réaliste  
 ✅ Aucun red flag légal ou éthique  
-✅ Projection financière crédible et argumentée  
-✅ **Effet "Je n'y aurais jamais pensé"** validé par tous les agents
+✅ Projection financière crédible et argumentée
 """
 
     print("📋 Cahier des charges chargé")
@@ -311,18 +282,16 @@ L'idée sera considérée comme validée SI ET SEULEMENT SI :
 
     # Lancer le débat
     try:
-        # Option : utiliser le script avec monitoring RAG en temps réel
-        # python example_with_rag_monitor.py
         result = debate_system.run_debate(
             cahier_des_charges=cahier_des_charges,
-            output_file="output/idee_revenu_complementaire.md"
+            output_file="output/exemple_resultat.md"
         )
 
         print("\n" + "="*80)
         print("✅ DÉBAT TERMINÉ AVEC SUCCÈS")
         print("="*80)
         print("\n📄 Le document de recommandation finale a été généré.")
-        print("📁 Fichier : output/idee_revenu_complementaire.md")
+        print("📁 Fichier : output/exemple_resultat.md")
         print("\nVous pouvez maintenant consulter le rapport complet.\n")
 
     except Exception as e:
