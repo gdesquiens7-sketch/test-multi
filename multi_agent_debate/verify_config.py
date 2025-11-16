@@ -13,13 +13,14 @@ print("VÉRIFICATION DE CONFIGURATION OPENROUTER")
 print("="*80)
 
 # Récupérer les variables
-api_key = os.getenv("OPENAI_API_KEY")
-base_url = os.getenv("OPENAI_API_BASE")
-model_name = os.getenv("MODEL_NAME", "deepseek-chat")
+api_key = os.getenv("OPENROUTER_API_KEY")
+model_name = os.getenv("MODEL_NAME", "openrouter/deepseek/deepseek-chat")
 
 print("\n📋 Configuration détectée :")
-print(f"  OPENAI_API_KEY : {api_key[:15]}...{api_key[-4:] if api_key else 'NON DÉFINIE'}")
-print(f"  OPENAI_API_BASE : {base_url if base_url else 'NON DÉFINIE'}")
+if api_key:
+    print(f"  OPENROUTER_API_KEY : {api_key[:15]}...{api_key[-4:]}")
+else:
+    print(f"  OPENROUTER_API_KEY : NON DÉFINIE")
 print(f"  MODEL_NAME : {model_name}")
 
 # Vérifications
@@ -28,47 +29,32 @@ warnings = []
 
 # Vérifier la clé API
 if not api_key:
-    errors.append("❌ OPENAI_API_KEY n'est pas définie dans .env")
+    errors.append("❌ OPENROUTER_API_KEY n'est pas définie dans .env")
 elif api_key.startswith("sk-or-v1-"):
     print("\n✅ Clé OpenRouter détectée (format correct)")
 elif api_key.startswith("sk-"):
-    warnings.append("⚠️  La clé semble être pour DeepSeek/OpenAI direct, pas OpenRouter")
-    warnings.append("    Pour OpenRouter, la clé doit commencer par 'sk-or-v1-'")
+    errors.append("❌ La clé ne semble pas être pour OpenRouter")
+    errors.append("    Pour OpenRouter, la clé doit commencer par 'sk-or-v1-'")
 else:
     errors.append("❌ Format de clé API invalide")
 
-# Vérifier la base URL
-if not base_url:
-    errors.append("❌ OPENAI_API_BASE n'est pas définie dans .env")
-elif base_url == "https://openrouter.ai/api/v1":
-    print("✅ Base URL OpenRouter correcte")
-elif "openrouter" in base_url.lower():
-    warnings.append(f"⚠️  Base URL OpenRouter non standard : {base_url}")
-    warnings.append("    URL recommandée : https://openrouter.ai/api/v1")
-elif "deepseek" in base_url.lower():
-    errors.append("❌ Base URL pointe vers DeepSeek direct, pas OpenRouter")
-    errors.append("    Changez pour : https://openrouter.ai/api/v1")
-elif "openai" in base_url.lower():
-    errors.append("❌ Base URL pointe vers OpenAI direct, pas OpenRouter")
-    errors.append("    Changez pour : https://openrouter.ai/api/v1")
-else:
-    warnings.append(f"⚠️  Base URL non reconnue : {base_url}")
-
 # Vérifier le nom du modèle
-if "/" in model_name:
+if model_name.startswith("openrouter/"):
     print(f"✅ Format de modèle OpenRouter détecté : {model_name}")
-    if model_name.startswith("deepseek/"):
+    if "deepseek" in model_name:
         print("   → Utilisera DeepSeek via OpenRouter")
-    elif model_name.startswith("anthropic/"):
+    elif "claude" in model_name or "anthropic" in model_name:
         print("   → Utilisera Claude via OpenRouter")
-    elif model_name.startswith("openai/"):
+    elif "gpt" in model_name or "openai" in model_name:
         print("   → Utilisera GPT via OpenRouter")
-    elif model_name.startswith("google/"):
+    elif "gemini" in model_name or "google" in model_name:
         print("   → Utilisera Gemini via OpenRouter")
+    elif "llama" in model_name or "meta" in model_name:
+        print("   → Utilisera Llama via OpenRouter")
 else:
-    warnings.append(f"⚠️  Nom de modèle sans '/' : {model_name}")
-    warnings.append("    Format OpenRouter : provider/model-name")
-    warnings.append("    Exemple : deepseek/deepseek-chat")
+    warnings.append(f"⚠️  Nom de modèle incorrect : {model_name}")
+    warnings.append("    Format OpenRouter : openrouter/provider/model-name")
+    warnings.append("    Exemple : openrouter/deepseek/deepseek-chat")
 
 # Afficher les avertissements
 if warnings:
@@ -87,9 +73,9 @@ if errors:
     print("  2. Générez une clé API sur https://openrouter.ai/keys")
     print("  3. Modifiez votre fichier .env :")
     print("")
-    print("     OPENAI_API_KEY=sk-or-v1-votre-cle-openrouter")
-    print("     OPENAI_API_BASE=https://openrouter.ai/api/v1")
-    print("     MODEL_NAME=deepseek/deepseek-chat")
+    print("     OPENROUTER_API_KEY=sk-or-v1-votre-cle-openrouter")
+    print("     MODEL_NAME=openrouter/deepseek/deepseek-chat")
+    print("     TEMPERATURE=0.7")
     print("")
     print("  4. Ajoutez du crédit sur https://openrouter.ai/credits")
     print("")
@@ -100,7 +86,7 @@ else:
     try:
         import requests
 
-        url = f"{base_url}/chat/completions"
+        url = "https://openrouter.ai/api/v1/chat/completions"
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",

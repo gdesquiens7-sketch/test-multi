@@ -22,15 +22,16 @@ def main():
     print("="*80 + "\n")
 
     # Vérification de la configuration
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:
-        print("❌ ERREUR : OPENAI_API_KEY non définie")
+        print("❌ ERREUR : OPENROUTER_API_KEY non définie")
         print("\nVeuillez :")
         print("1. Copier .env.example vers .env")
-        print("2. Éditer .env et ajouter votre clé API")
+        print("2. Éditer .env et ajouter votre clé API OpenRouter")
         print("\nCommandes :")
         print("  cp .env.example .env")
         print("  nano .env  # ou votre éditeur préféré")
+        print("\nVoir OPENROUTER_SETUP.md pour plus d'infos")
         return
 
     # Exemple de cahier des charges
