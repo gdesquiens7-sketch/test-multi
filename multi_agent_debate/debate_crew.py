@@ -124,23 +124,12 @@ class MultiAgentDebateCrew:
             metadata={"source": "cahier_des_charges", "type": "requirements"}
         )
 
-        # Configuration de l'embedder pour utiliser OpenAI directement
-        # IMPORTANT : Force api_base pour éviter que OPENAI_API_BASE (OpenRouter) soit utilisé
-        # ChromaDB's OpenAIEmbeddingFunction utilise le modèle par défaut (text-embedding-ada-002)
-        # Coût : ~$0.0001 par 1000 tokens = ~$0.002 par débat (négligeable)
-        embedder_config = {
-            "provider": "openai",
-            "config": {
-                "api_key": os.getenv("OPENAI_API_KEY"),
-                "api_base": "https://api.openai.com/v1"  # Force OpenAI endpoint
-            }
-        }
-
-        # Assigner le knowledge et l'embedder à chaque agent individuellement
-        # Plus fiable que Crew-level knowledge avec processus hiérarchique
+        # Assigner le knowledge à chaque agent individuellement
+        # Ne pas passer d'embedder config, laisser ChromaDB utiliser OPENAI_API_KEY env var
+        # ChromaDB utilisera automatiquement text-embedding-ada-002 avec ta clé OpenAI
         for agent in [self.innovateur, self.pragmatique, self.avocat_du_diable, self.stratege, self.facilitateur]:
             agent.knowledge_sources = [cahier_knowledge]
-            agent.embedder = embedder_config
+            # Pas d'embedder config - utilise les defaults
 
         # Création du Crew avec processus hiérarchique
         # Note: Le manager_agent ne doit PAS être dans la liste agents (CrewAI 0.98.0)
