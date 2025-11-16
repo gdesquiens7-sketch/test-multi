@@ -74,7 +74,7 @@ Créer un outil web de gestion de tâches simple et collaboratif pour les équip
 
     # Créer le système de débat
     debate_system = MultiAgentDebateCrew(
-        model_name=os.getenv("MODEL_NAME", "deepseek/deepseek-chat"),
+        model_name=os.getenv("MODEL_NAME", "openrouter/deepseek/deepseek-chat"),
         temperature=float(os.getenv("TEMPERATURE", "0.7"))
     )
 

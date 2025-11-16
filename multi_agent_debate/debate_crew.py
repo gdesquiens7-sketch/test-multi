@@ -25,25 +25,22 @@ from typing import Union
 class MultiAgentDebateCrew:
     """Classe principale pour orchestrer le système de débat multi-agent."""
 
-    def __init__(self, model_name: str = "deepseek/deepseek-chat", temperature: float = 0.7):
+    def __init__(self, model_name: str = "openrouter/deepseek/deepseek-chat", temperature: float = 0.7):
         """
         Initialise le crew de débat multi-agent.
 
         Args:
-            model_name: Le nom du modèle à utiliser (default: deepseek/deepseek-chat)
-                       Pour OpenRouter: "deepseek/deepseek-chat" (recommandé)
-                       Pour DeepSeek direct: "deepseek-chat"
+            model_name: Le nom du modèle à utiliser (default: openrouter/deepseek/deepseek-chat)
+                       Pour OpenRouter: "openrouter/deepseek/deepseek-chat" (recommandé)
+                       Pour DeepSeek direct: "deepseek/deepseek-chat"
                        Pour OpenAI: "gpt-4", "gpt-3.5-turbo"
             temperature: La température pour la génération (default: 0.7)
         """
         # Configuration du LLM via CrewAI LLM (utilise LiteLLM en interne)
-        # LiteLLM lit automatiquement OPENAI_API_KEY et OPENAI_API_BASE
-        # depuis les variables d'environnement
+        # LiteLLM lit automatiquement OPENROUTER_API_KEY depuis les variables d'environnement
         self.llm = LLM(
             model=model_name,
-            temperature=temperature,
-            api_key=os.getenv("OPENAI_API_KEY"),
-            base_url=os.getenv("OPENAI_API_BASE")
+            temperature=temperature
         )
 
         # Initialisation des agents

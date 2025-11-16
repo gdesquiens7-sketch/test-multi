@@ -36,17 +36,16 @@
 
 ```bash
 # Configuration OpenRouter
-OPENAI_API_KEY=sk-or-v1-VOTRE-CLE-ICI
-OPENAI_API_BASE=https://openrouter.ai/api/v1
+OPENROUTER_API_KEY=sk-or-v1-VOTRE-CLE-ICI
 
 # Modèle à utiliser
-MODEL_NAME=deepseek/deepseek-chat
+MODEL_NAME=openrouter/deepseek/deepseek-chat
 
 # Température
 TEMPERATURE=0.7
 ```
 
-**Important** : Utilisez le format `provider/model-name` pour OpenRouter.
+**Important** : Utilisez le format `openrouter/provider/model-name` pour OpenRouter.
 
 ---
 
@@ -84,9 +83,8 @@ TEMPERATURE=0.7
 ### Configuration 1 : DeepSeek (recommandé, pas cher)
 
 ```bash
-OPENAI_API_KEY=sk-or-v1-votre-cle
-OPENAI_API_BASE=https://openrouter.ai/api/v1
-MODEL_NAME=deepseek/deepseek-chat
+OPENROUTER_API_KEY=sk-or-v1-votre-cle
+MODEL_NAME=openrouter/deepseek/deepseek-chat
 TEMPERATURE=0.7
 ```
 
@@ -95,9 +93,8 @@ TEMPERATURE=0.7
 ### Configuration 2 : Claude 3.5 Sonnet (meilleure qualité)
 
 ```bash
-OPENAI_API_KEY=sk-or-v1-votre-cle
-OPENAI_API_BASE=https://openrouter.ai/api/v1
-MODEL_NAME=anthropic/claude-3.5-sonnet
+OPENROUTER_API_KEY=sk-or-v1-votre-cle
+MODEL_NAME=openrouter/anthropic/claude-3.5-sonnet
 TEMPERATURE=0.7
 ```
 
@@ -106,9 +103,8 @@ TEMPERATURE=0.7
 ### Configuration 3 : Llama 3.1 70B (open-source puissant)
 
 ```bash
-OPENAI_API_KEY=sk-or-v1-votre-cle
-OPENAI_API_BASE=https://openrouter.ai/api/v1
-MODEL_NAME=meta-llama/llama-3.1-70b-instruct
+OPENROUTER_API_KEY=sk-or-v1-votre-cle
+MODEL_NAME=openrouter/meta-llama/llama-3.1-70b-instruct
 TEMPERATURE=0.7
 ```
 
@@ -117,9 +113,8 @@ TEMPERATURE=0.7
 ### Configuration 4 : Gratuit (Gemini Flash)
 
 ```bash
-OPENAI_API_KEY=sk-or-v1-votre-cle
-OPENAI_API_BASE=https://openrouter.ai/api/v1
-MODEL_NAME=google/gemini-flash-1.5
+OPENROUTER_API_KEY=sk-or-v1-votre-cle
+MODEL_NAME=openrouter/google/gemini-flash-1.5
 TEMPERATURE=0.7
 ```
 
@@ -198,16 +193,16 @@ C'est **très simple** avec OpenRouter ! Changez juste le `MODEL_NAME` dans `.en
 
 ```bash
 # Essayer DeepSeek
-MODEL_NAME=deepseek/deepseek-chat
+MODEL_NAME=openrouter/deepseek/deepseek-chat
 
 # Essayer Claude
-MODEL_NAME=anthropic/claude-3.5-sonnet
+MODEL_NAME=openrouter/anthropic/claude-3.5-sonnet
 
 # Essayer GPT-4
-MODEL_NAME=openai/gpt-4-turbo
+MODEL_NAME=openrouter/openai/gpt-4-turbo
 
 # Essayer Llama
-MODEL_NAME=meta-llama/llama-3.1-70b-instruct
+MODEL_NAME=openrouter/meta-llama/llama-3.1-70b-instruct
 ```
 
 Relancez votre script, c'est tout ! 🚀
@@ -230,14 +225,14 @@ Relancez votre script, c'est tout ! 🚀
 ### Erreur : "Model not found"
 
 **Solution** : Vérifiez le nom du modèle sur https://openrouter.ai/models
-- Format OpenRouter : `provider/model-name`
-- Exemple : `deepseek/deepseek-chat` (pas juste `deepseek-chat`)
+- Format OpenRouter : `openrouter/provider/model-name`
+- Exemple : `openrouter/deepseek/deepseek-chat` (pas juste `deepseek-chat`)
 
 ### Le modèle est lent
 
 **Solutions** :
 - Certains modèles sont plus lents (GPT-4, Claude)
-- Essayez un modèle plus rapide : `deepseek/deepseek-chat`, `google/gemini-flash-1.5`
+- Essayez un modèle plus rapide : `openrouter/deepseek/deepseek-chat`, `openrouter/google/gemini-flash-1.5`
 - Vérifiez le statut : https://openrouter.ai/status
 
 ---
