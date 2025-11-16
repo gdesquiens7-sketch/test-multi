@@ -37,6 +37,13 @@ Ce système implémente un **débat structuré en 6 tours** entre 5 agents IA sp
 ✅ **Consensus forcé** : Convergence obligatoire vers une solution unique
 ✅ **Documentation complète** : Rapport final structuré et actionnable
 
+### Stack Technique
+
+- **CrewAI 0.98.0** - Framework multi-agent (dernière version, janvier 2025)
+- **LangChain 0.3.0** - Intégration LLM
+- **Python 3.10+** - Langage (compatible jusqu'à 3.13)
+- **Support multi-modèles** - DeepSeek, OpenAI, Claude, Gemini, Ollama
+
 ---
 
 ## 🏗️ ARCHITECTURE

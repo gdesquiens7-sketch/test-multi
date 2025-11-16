@@ -20,6 +20,7 @@ from langchain_openai import ChatOpenAI
 from config.agents import DebateAgents
 from config.tasks import DebateTasks
 import os
+from typing import Union
 
 
 class MultiAgentDebateCrew:
@@ -129,14 +130,12 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,
             verbose=2,
-            memory=True,
-            max_iter=15,
-            full_output=True
+            memory=True
         )
 
         return crew
 
-    def run_debate(self, cahier_des_charges: str, output_file: str = None) -> dict:
+    def run_debate(self, cahier_des_charges: str, output_file: str = None):
         """
         Lance le débat multi-agent complet.
 
@@ -145,7 +144,7 @@ class MultiAgentDebateCrew:
             output_file: Fichier optionnel pour sauvegarder le résultat
 
         Returns:
-            dict: Le résultat complet du débat
+            CrewOutput: L'objet de résultat complet du débat (CrewAI >= 0.41.0)
         """
         print("\n" + "="*80)
         print("SYSTÈME MULTI-AGENT DE DÉBAT ET VALIDATION")
@@ -177,22 +176,25 @@ class MultiAgentDebateCrew:
 
         return result
 
-    def _save_result(self, result: dict, output_file: str):
+    def _save_result(self, result, output_file: str):
         """
         Sauvegarde le résultat du débat dans un fichier.
 
         Args:
-            result: Le résultat du débat
+            result: L'objet CrewOutput du débat
             output_file: Le chemin du fichier de sortie
         """
         with open(output_file, 'w', encoding='utf-8') as f:
-            # Si result est un objet avec un attribut 'raw', l'utiliser
+            # CrewAI >= 0.41.0 retourne un objet CrewOutput avec l'attribut 'raw'
             if hasattr(result, 'raw'):
-                f.write(result.raw)
-            # Sinon si c'est un dict avec une clé 'final_output'
+                f.write(str(result.raw))
+            # CrewAI >= 0.41.0 peut aussi avoir 'final_output'
+            elif hasattr(result, 'final_output'):
+                f.write(str(result.final_output))
+            # Fallback pour compatibilité avec anciennes versions
             elif isinstance(result, dict) and 'final_output' in result:
-                f.write(result['final_output'])
-            # Sinon écrire la représentation string
+                f.write(str(result['final_output']))
+            # Dernier recours : conversion en string
             else:
                 f.write(str(result))
 

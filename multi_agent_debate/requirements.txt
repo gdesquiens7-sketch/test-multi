@@ -1,23 +1,23 @@
 # Système Multi-Agent de Débat et Validation
 # Requirements Python
 
-# CrewAI - Framework multi-agent
-crewai>=0.28.0
-crewai-tools>=0.2.0
+# CrewAI - Framework multi-agent (Latest version)
+crewai>=0.98.0
+crewai-tools>=0.12.0
 
 # LangChain - Intégration LLM
-langchain>=0.1.0
-langchain-openai>=0.0.5
-langchain-community>=0.0.20
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langchain-community>=0.3.0
 
 # OpenAI / DeepSeek
-openai>=1.10.0
+openai>=1.50.0
 
 # Utilities
 python-dotenv>=1.0.0
-pydantic>=2.0.0
-pydantic-settings>=2.0.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
 
 # Optional - Pour d'autres modèles
-# anthropic>=0.18.0  # Pour Claude
-# google-generativeai>=0.3.0  # Pour Gemini
+# anthropic>=0.39.0  # Pour Claude
+# google-generativeai>=0.8.0  # Pour Gemini
