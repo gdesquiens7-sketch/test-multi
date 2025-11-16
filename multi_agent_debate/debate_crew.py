@@ -131,7 +131,7 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
-            memory=True
+            memory=False  # Désactivé temporairement - erreurs ChromaDB avec OpenRouter
         )
 
         return crew
