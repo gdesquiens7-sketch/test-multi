@@ -137,6 +137,12 @@ class MultiAgentDebateCrew:
             }
         }
 
+        # Assigner le knowledge et l'embedder à chaque agent individuellement
+        # Plus fiable que Crew-level knowledge avec processus hiérarchique
+        for agent in [self.innovateur, self.pragmatique, self.avocat_du_diable, self.stratege, self.facilitateur]:
+            agent.knowledge_sources = [cahier_knowledge]
+            agent.embedder = embedder_config
+
         # Création du Crew avec processus hiérarchique
         # Note: Le manager_agent ne doit PAS être dans la liste agents (CrewAI 0.98.0)
         crew = Crew(
@@ -158,9 +164,7 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
-            memory=True,  # Système de mémoire pour historique des conversations
-            knowledge_sources=[cahier_knowledge],  # RAG : Cahier accessible par requête sémantique
-            embedder=embedder_config
+            memory=True  # Système de mémoire pour historique des conversations
         )
 
         return crew
