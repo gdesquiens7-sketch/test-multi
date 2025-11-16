@@ -16,6 +16,7 @@ Process : Hierarchical (Le Facilitateur est le manager)
 """
 
 from crewai import Crew, Process, LLM
+from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
 from config.agents import DebateAgents
 from config.tasks import DebateTasks
 import os
@@ -52,13 +53,19 @@ class MultiAgentDebateCrew:
 
     def create_crew(self, cahier_des_charges: str) -> Crew:
         """
-        Crée le crew avec toutes les tâches de débat.
+        Crée le crew avec toutes les tâches de débat et le système RAG.
+
+        Le cahier des charges est :
+        - Passé complet à Task 1 pour analyse initiale détaillée
+        - Stocké dans ChromaDB via StringKnowledgeSource (RAG)
+        - Accessible par tous les agents via requêtes sémantiques automatiques
+        - Référencé dans Tasks 2-6 (économie ~70% de tokens sur répétition)
 
         Args:
             cahier_des_charges: Le cahier des charges complet
 
         Returns:
-            Crew: Le crew configuré avec toutes les tâches
+            Crew: Le crew configuré avec toutes les tâches et le RAG
         """
         # TOUR 1 : Proposition Initiale Multi-Perspectives
         task1_multi_perspective = DebateTasks.multi_perspective_proposal(
@@ -110,6 +117,13 @@ class MultiAgentDebateCrew:
             cahier_des_charges=cahier_des_charges
         )
 
+        # Création de la source de connaissance RAG pour le cahier des charges
+        # Permet aux agents de faire des requêtes sémantiques sur le cahier
+        cahier_knowledge = StringKnowledgeSource(
+            content=cahier_des_charges,
+            metadata={"source": "cahier_des_charges", "type": "requirements"}
+        )
+
         # Création du Crew avec processus hiérarchique
         # Note: Le manager_agent ne doit PAS être dans la liste agents (CrewAI 0.98.0)
         crew = Crew(
@@ -131,7 +145,12 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
-            memory=True  # Système de mémoire RAG avec ChromaDB
+            memory=True,  # Système de mémoire pour historique des conversations
+            knowledge_sources=[cahier_knowledge],  # RAG : Cahier accessible par requête sémantique
+            embedder={
+                "provider": "openai",
+                "config": {"model": "text-embedding-3-small"}
+            }
         )
 
         return crew
