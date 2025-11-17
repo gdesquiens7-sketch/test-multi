@@ -25,26 +25,36 @@ class DebateTasks:
             CAHIER DES CHARGES :
             {cahier_des_charges}
 
-            MISSION :
+            MISSION - DÉLÉGATION OBLIGATOIRE :
             Vous devez analyser en détail le cahier des charges ci-dessus et produire des propositions initiales.
 
-            L'INNOVATEUR doit :
+            ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
+            - L'Innovateur (The Innovator)
+            - Le Stratège (The Strategist)
+
+            VOUS DEVEZ utiliser l'outil "Ask question to coworker" pour :
+            1. Consulter l'Innovateur pour obtenir ses propositions créatives
+            2. Consulter le Stratège pour obtenir son analyse stratégique
+            3. Faciliter les échanges entre eux pour enrichir les propositions
+
+            L'INNOVATEUR doit (via délégation) :
             - Analyser chaque exigence du cahier des charges
             - Proposer 3 solutions créatives DISTINCTES répondant à TOUTES les exigences
             - Pour chaque solution, expliquer comment elle adresse chaque exigence majeure
             - Identifier les points d'innovation de chaque proposition
 
-            LE STRATÈGE doit :
+            LE STRATÈGE doit (via délégation) :
             - Commenter immédiatement l'alignement stratégique de chaque proposition
             - Évaluer la valeur business de chaque option
             - Identifier les opportunités et risques stratégiques
             - Dialoguer avec l'Innovateur pour enrichir les propositions
 
             RÈGLES DU DÉBAT :
-            1. Citez EXPLICITEMENT les exigences du cahier des charges dans vos arguments
-            2. Échangez entre vous pour améliorer les propositions
-            3. Aucune proposition ne doit être présentée sans avoir été discutée
-            4. Créez une matrice de conformité pour chaque proposition
+            1. DÉLÉGUEZ systématiquement aux 2 agents spécifiés
+            2. Citez EXPLICITEMENT les exigences du cahier des charges dans vos arguments
+            3. Facilitez les échanges entre agents pour améliorer les propositions
+            4. Aucune proposition ne doit être présentée sans avoir été discutée
+            5. Créez une matrice de conformité pour chaque proposition
             """,
             expected_output="""
             **RAPPORT : PROPOSITIONS INITIALES MULTI-PERSPECTIVES**
@@ -113,32 +123,42 @@ class DebateTasks:
             Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
             ou référez-vous à l'analyse détaillée de l'Innovateur et du Stratège pour les exigences.
 
-            MISSION :
+            MISSION - DÉLÉGATION OBLIGATOIRE :
             Vous devez critiquer de manière constructive les 3 propositions présentées.
+
+            ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
+            - Le Pragmatique (The Pragmatist)
+            - L'Avocat du Diable (The Devil's Advocate)
+
+            VOUS DEVEZ utiliser l'outil "Ask question to coworker" pour :
+            1. Consulter le Pragmatique pour sa critique de faisabilité
+            2. Consulter l'Avocat du Diable pour identifier les failles
+            3. Faciliter le débat entre eux sur le niveau de criticité
 
             CONTEXTE DES PROPOSITIONS :
             Référez-vous aux propositions initiales fournies par l'Innovateur et le Stratège
             dans la tâche précédente (disponibles automatiquement via le contexte).
 
-            LE PRAGMATIQUE doit :
+            LE PRAGMATIQUE doit (via délégation) :
             - Vérifier que les propositions respectent TOUTES les contraintes du cahier des charges
             - Identifier les contraintes de faisabilité (délais, budget, ressources, technique)
             - Évaluer la réalisabilité de chaque proposition
             - Pointer les risques opérationnels
 
-            L'AVOCAT DU DIABLE doit :
+            L'AVOCAT DU DIABLE doit (via délégation) :
             - Identifier les failles et incohérences dans chaque proposition
             - Vérifier qu'aucune exigence n'est mal adressée ou oubliée
             - Challenger les hypothèses implicites
             - Pointer les contradictions potentielles
 
             RÈGLES DU DÉBAT :
-            1. Débattez entre vous sur le niveau de criticité de chaque point
-            2. Utilisez la délégation pour consulter les autres agents si nécessaire
-            3. Utilisez la mémoire partagée (RAG) pour récupérer le cahier des charges complet
-            4. Citez les exigences du cahier des charges qui posent problème
-            5. Priorisez les risques (critique / important / mineur)
-            6. Argumentez vos positions de manière constructive
+            1. DÉLÉGUEZ systématiquement aux 2 agents spécifiés
+            2. Débattez entre vous (via délégation) sur le niveau de criticité de chaque point
+            3. Utilisez la délégation pour consulter les autres agents si nécessaire
+            4. Utilisez la mémoire partagée (RAG) pour récupérer le cahier des charges complet
+            5. Citez les exigences du cahier des charges qui posent problème
+            6. Priorisez les risques (critique / important / mineur)
+            7. Argumentez vos positions de manière constructive
             """,
             expected_output="""
             **RAPPORT : CRITIQUE CROISÉE DES PROPOSITIONS**
@@ -216,32 +236,42 @@ class DebateTasks:
             Le cahier des charges complet a été analysé en Task 1. Consultez la mémoire système (RAG)
             pour les exigences spécifiques si nécessaire.
 
-            MISSION :
+            MISSION - DÉLÉGATION OBLIGATOIRE :
             Vous devez répondre aux critiques et améliorer les propositions.
+
+            ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
+            - L'Innovateur (The Innovator)
+            - Le Stratège (The Strategist)
+
+            VOUS DEVEZ utiliser l'outil "Ask question to coworker" pour :
+            1. Consulter l'Innovateur pour ses réponses aux critiques et ajustements
+            2. Consulter le Stratège pour sa validation stratégique des ajustements
+            3. Faciliter les échanges pour co-créer les propositions V2
 
             CONTEXTE :
             Référez-vous au rapport de critique croisée de la tâche précédente
             (disponible automatiquement via le contexte).
 
-            L'INNOVATEUR doit :
+            L'INNOVATEUR doit (via délégation) :
             - Répondre point par point aux critiques reçues
             - Proposer des ajustements concrets pour lever les objections
             - Adapter les solutions pour couvrir les exigences manquantes
             - Défendre les aspects innovants qui restent pertinents
 
-            LE STRATÈGE doit :
+            LE STRATÈGE doit (via délégation) :
             - Compléter la défense avec des arguments stratégiques
             - Proposer des arbitrages entre innovation et faisabilité
             - Valider que les ajustements maintiennent la valeur business
             - Participer aux propositions V2
 
             RÈGLES DU DÉBAT :
-            1. Adressez CHAQUE critique reçue (acceptation ou contre-argument)
-            2. Proposez des PROPOSITIONS V2 améliorées
-            3. Utilisez la délégation pour consulter les autres agents si nécessaire
-            4. Utilisez la mémoire partagée pour récupérer le cahier des charges complet
-            5. Mettez à jour la matrice de conformité
-            6. Documentez les compromis effectués
+            1. DÉLÉGUEZ systématiquement aux 2 agents spécifiés
+            2. Adressez CHAQUE critique reçue (acceptation ou contre-argument)
+            3. Proposez des PROPOSITIONS V2 améliorées
+            4. Utilisez la délégation pour consulter les autres agents si nécessaire
+            5. Utilisez la mémoire partagée pour récupérer le cahier des charges complet
+            6. Mettez à jour la matrice de conformité
+            7. Documentez les compromis effectués
             """,
             expected_output="""
             **RAPPORT : DÉFENSE ET PROPOSITIONS V2**
