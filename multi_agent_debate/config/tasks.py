@@ -29,12 +29,12 @@ class DebateTasks:
             Vous devez analyser en détail le cahier des charges ci-dessus et produire des propositions initiales.
 
             ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
-            - L'Innovateur (The Innovator)
-            - Le Stratège (The Strategist)
+            - l'innovateur (the innovator)
+            - le stratège (the strategist)
 
             VOUS DEVEZ utiliser l'outil "Ask question to coworker" pour :
-            1. Consulter l'Innovateur pour obtenir ses propositions créatives
-            2. Consulter le Stratège pour obtenir son analyse stratégique
+            1. Consulter "l'innovateur (the innovator)" pour obtenir ses propositions créatives
+            2. Consulter "le stratège (the strategist)" pour obtenir son analyse stratégique
             3. Faciliter les échanges entre eux pour enrichir les propositions
 
             L'INNOVATEUR doit (via délégation) :
@@ -127,12 +127,12 @@ class DebateTasks:
             Vous devez critiquer de manière constructive les 3 propositions présentées.
 
             ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
-            - Le Pragmatique (The Pragmatist)
-            - L'Avocat du Diable (The Devil's Advocate)
+            - le pragmatique (the pragmatist)
+            - l'avocat du diable (the devil's advocate)
 
             VOUS DEVEZ utiliser l'outil "Ask question to coworker" pour :
-            1. Consulter le Pragmatique pour sa critique de faisabilité
-            2. Consulter l'Avocat du Diable pour identifier les failles
+            1. Consulter "le pragmatique (the pragmatist)" pour sa critique de faisabilité
+            2. Consulter "l'avocat du diable (the devil's advocate)" pour identifier les failles
             3. Faciliter le débat entre eux sur le niveau de criticité
 
             CONTEXTE DES PROPOSITIONS :
@@ -240,12 +240,12 @@ class DebateTasks:
             Vous devez répondre aux critiques et améliorer les propositions.
 
             ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
-            - L'Innovateur (The Innovator)
-            - Le Stratège (The Strategist)
+            - l'innovateur (the innovator)
+            - le stratège (the strategist)
 
             VOUS DEVEZ utiliser l'outil "Ask question to coworker" pour :
-            1. Consulter l'Innovateur pour ses réponses aux critiques et ajustements
-            2. Consulter le Stratège pour sa validation stratégique des ajustements
+            1. Consulter "l'innovateur (the innovator)" pour ses réponses aux critiques et ajustements
+            2. Consulter "le stratège (the strategist)" pour sa validation stratégique des ajustements
             3. Faciliter les échanges pour co-créer les propositions V2
 
             CONTEXTE :
@@ -680,10 +680,10 @@ class DebateTasks:
 
             AGENTS DISPONIBLES :
             Vous avez accès à 4 agents workers que vous DEVEZ utiliser via la délégation :
-            - L'Innovateur (The Innovator) : pour valider les aspects innovants de la solution finale
-            - Le Pragmatique (The Pragmatist) : pour valider la faisabilité et les contraintes
-            - L'Avocat du Diable (The Devil's Advocate) : pour valider qu'il n'y a pas de failles critiques
-            - Le Stratège (The Strategist) : pour valider l'alignement stratégique et la valeur business
+            - "l'innovateur (the innovator)" : pour valider les aspects innovants de la solution finale
+            - "le pragmatique (the pragmatist)" : pour valider la faisabilité et les contraintes
+            - "l'avocat du diable (the devil's advocate)" : pour valider qu'il n'y a pas de failles critiques
+            - "le stratège (the strategist)" : pour valider l'alignement stratégique et la valeur business
             
             INSTRUCTIONS CRITIQUES :
             1. N'ATTENDEZ PAS de réponse de l'utilisateur - vous avez tous les agents nécessaires

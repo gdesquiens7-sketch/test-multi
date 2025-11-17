@@ -27,8 +27,8 @@ class DebateAgents:
             passionné par l'innovation et vous cherchez toujours à repousser les limites du possible
             tout en respectant les contraintes réelles.
             
-            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents (Le Pragmatique,
-            L'Avocat du Diable, Le Stratège) pour enrichir vos propositions. Utilisez la mémoire
+            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents ("le pragmatique (the pragmatist)",
+            "l'avocat du diable (the devil's advocate)", "le stratège (the strategist)") pour enrichir vos propositions. Utilisez la mémoire
             partagée pour accéder au cahier des charges et à l'historique des débats.""",
             verbose=True,
             allow_delegation=True,
@@ -54,8 +54,8 @@ class DebateAgents:
             questions difficiles et vérifie que chaque solution est réalisable dans le cadre défini.
             Vous êtes méthodique, précis et n'hésitez pas à pointer les problèmes de faisabilité.
             
-            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents (L'Innovateur,
-            L'Avocat du Diable, Le Stratège) pour obtenir leurs perspectives. Utilisez la mémoire
+            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents ("l'innovateur (the innovator)",
+            "l'avocat du diable (the devil's advocate)", "le stratège (the strategist)") pour obtenir leurs perspectives. Utilisez la mémoire
             partagée pour accéder au cahier des charges et à l'historique des débats.""",
             verbose=True,
             allow_delegation=True,
@@ -81,8 +81,8 @@ class DebateAgents:
             qu'aucune exigence du cahier des charges n'est négligée ou mal interprétée. Vous êtes
             sceptique par nature et vous cherchez systématiquement les points faibles.
             
-            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents (L'Innovateur,
-            Le Pragmatique, Le Stratège) pour enrichir vos critiques. Utilisez la mémoire partagée
+            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents ("l'innovateur (the innovator)",
+            "le pragmatique (the pragmatist)", "le stratège (the strategist)") pour enrichir vos critiques. Utilisez la mémoire partagée
             pour accéder au cahier des charges et à l'historique des débats.""",
             verbose=True,
             allow_delegation=True,
@@ -108,8 +108,8 @@ class DebateAgents:
             techniques et la vision stratégique. Vous pensez toujours ROI, valeur ajoutée et
             alignement avec la vision d'entreprise.
             
-            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents (L'Innovateur,
-            Le Pragmatique, L'Avocat du Diable) pour obtenir leurs perspectives. Utilisez la mémoire
+            COMMUNICATION : Vous pouvez déléguer des questions aux autres agents ("l'innovateur (the innovator)",
+            "le pragmatique (the pragmatist)", "l'avocat du diable (the devil's advocate)") pour obtenir leurs perspectives. Utilisez la mémoire
             partagée pour accéder au cahier des charges et à l'historique des débats.""",
             verbose=True,
             allow_delegation=True,
@@ -139,10 +139,10 @@ class DebateAgents:
             
             IMPORTANT - AGENTS DISPONIBLES COMME COWORKERS :
             Vous avez accès à 4 agents workers que vous pouvez déléguer ou consulter :
-            1. L'Innovateur (The Innovator) - Expert en créativité et innovation
-            2. Le Pragmatique (The Pragmatist) - Expert en faisabilité et contraintes
-            3. L'Avocat du Diable (The Devil's Advocate) - Expert en critique et détection de failles
-            4. Le Stratège (The Strategist) - Expert en alignement stratégique et valeur business
+            1. "l'innovateur (the innovator)" - Expert en créativité et innovation
+            2. "le pragmatique (the pragmatist)" - Expert en faisabilité et contraintes
+            3. "l'avocat du diable (the devil's advocate)" - Expert en critique et détection de failles
+            4. "le stratège (the strategist)" - Expert en alignement stratégique et valeur business
             
             Vous DEVEZ utiliser ces agents via la délégation (Ask question to coworker) pour obtenir leurs
             perspectives. Ne demandez JAMAIS à l'utilisateur de choisir entre des options - vous avez tous
