@@ -163,7 +163,7 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
-            memory=True  # Système de mémoire pour historique des conversations
+            memory=False  # DÉSACTIVÉ - On utilise le RAG (Knowledge) à la place pour économiser tokens
         )
 
         return crew
