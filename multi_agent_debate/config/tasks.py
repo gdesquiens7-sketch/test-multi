@@ -95,7 +95,7 @@ class DebateTasks:
         )
 
     @staticmethod
-    def first_critique_round(pragmatique, avocat_du_diable, multi_perspective_proposal_task, cahier_des_charges: str) -> Task:
+    def first_critique_round(pragmatique, avocat_du_diable, multi_perspective_proposal_task) -> Task:
         """
         TOUR 2 : Premier Round de Critique Croisée.
 
@@ -103,7 +103,6 @@ class DebateTasks:
             pragmatique: L'agent Pragmatique
             avocat_du_diable: L'agent Avocat du Diable
             multi_perspective_proposal_task: La tâche précédente (contexte)
-            cahier_des_charges: Le cahier des charges complet
 
         Returns:
             Task: La tâche configurée
@@ -199,7 +198,7 @@ class DebateTasks:
         )
 
     @staticmethod
-    def defense_and_improvement(innovateur, stratege, first_critique_round_task, cahier_des_charges: str) -> Task:
+    def defense_and_improvement(innovateur, stratege, first_critique_round_task) -> Task:
         """
         TOUR 3 : Défense et Amélioration.
 
@@ -207,7 +206,6 @@ class DebateTasks:
             innovateur: L'agent Innovateur
             stratege: L'agent Stratège
             first_critique_round_task: La tâche précédente (contexte)
-            cahier_des_charges: Le cahier des charges complet
 
         Returns:
             Task: La tâche configurée
@@ -313,7 +311,7 @@ class DebateTasks:
         )
 
     @staticmethod
-    def intensive_challenge(pragmatique, defense_and_improvement_task, cahier_des_charges: str) -> Task:
+    def intensive_challenge(pragmatique, defense_and_improvement_task) -> Task:
         """
         TOUR 4 : Second Round de Challenge Intensif.
 
@@ -322,7 +320,6 @@ class DebateTasks:
         Args:
             pragmatique: L'agent Pragmatique (agent principal, peut déléguer)
             defense_and_improvement_task: La tâche précédente (contexte)
-            cahier_des_charges: Le cahier des charges complet
 
         Returns:
             Task: La tâche configurée
@@ -450,7 +447,7 @@ class DebateTasks:
         )
 
     @staticmethod
-    def forced_convergence(innovateur, intensive_challenge_task, cahier_des_charges: str) -> Task:
+    def forced_convergence(innovateur, intensive_challenge_task) -> Task:
         """
         TOUR 5 : Convergence Forcée.
 
@@ -459,7 +456,6 @@ class DebateTasks:
         Args:
             innovateur: L'agent Innovateur (agent principal, peut déléguer)
             intensive_challenge_task: La tâche précédente (contexte)
-            cahier_des_charges: Le cahier des charges complet
 
         Returns:
             Task: La tâche configurée
@@ -628,14 +624,13 @@ class DebateTasks:
         )
 
     @staticmethod
-    def final_synthesis(facilitateur, all_previous_tasks: list, cahier_des_charges: str) -> Task:
+    def final_synthesis(facilitateur, all_previous_tasks: list) -> Task:
         """
         TOUR 6 : Synthèse et Validation Finale par le Manager (Facilitateur).
 
         Args:
             facilitateur: L'agent Facilitateur (Manager)
             all_previous_tasks: Liste de toutes les tâches précédentes (contexte complet)
-            cahier_des_charges: Le cahier des charges complet
 
         Returns:
             Task: La tâche configurée

@@ -19,7 +19,6 @@ from crewai import Crew, Process, LLM
 from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
 from config.agents import DebateAgents
 from config.tasks import DebateTasks
-from langchain_openai import OpenAIEmbeddings
 import os
 
 
@@ -55,11 +54,14 @@ class MultiAgentDebateCrew:
         """
         Crée le crew avec toutes les tâches de débat et le système RAG.
 
-        Le cahier des charges est :
-        - Passé complet à Task 1 pour analyse initiale détaillée
-        - Stocké dans ChromaDB via StringKnowledgeSource (RAG)
-        - Accessible par tous les agents via requêtes sémantiques automatiques
-        - Référencé dans Tasks 2-6 (économie ~70% de tokens sur répétition)
+        STRATÉGIE D'OPTIMISATION RAG (économise ~70% de tokens) :
+        - Task 1 : Le cahier des charges COMPLET est passé et analysé en détail (270 lignes)
+        - Tasks 2-6 : Le cahier des charges n'est PAS passé en paramètre
+          → Les agents utilisent la mémoire RAG (ChromaDB) pour récupérer les exigences
+          → Évite la duplication de 270 lignes × 5 tâches = économie massive de tokens
+        - Système RAG : StringKnowledgeSource stocke le cahier dans ChromaDB
+          → Accessible via requêtes sémantiques par tous les agents
+          → Embeddings OpenAI (text-embedding-3-small) pour similarité sémantique
 
         Args:
             cahier_des_charges: Le cahier des charges complet
@@ -68,6 +70,8 @@ class MultiAgentDebateCrew:
             Crew: Le crew configuré avec toutes les tâches et le RAG
         """
         # TOUR 1 : Proposition Initiale Multi-Perspectives
+        # ⚠️ SEULE tâche qui reçoit le cahier des charges complet en paramètre
+        # Les agents analyseront toutes les exigences en détail
         task1_multi_perspective = DebateTasks.multi_perspective_proposal(
             innovateur=self.innovateur,
             stratege=self.stratege,
@@ -75,36 +79,37 @@ class MultiAgentDebateCrew:
         )
 
         # TOUR 2 : Premier Round de Critique Croisée
+        # ✅ Pas de cahier_des_charges en paramètre → agents utilisent RAG
         task2_first_critique = DebateTasks.first_critique_round(
             pragmatique=self.pragmatique,
             avocat_du_diable=self.avocat_du_diable,
-            multi_perspective_proposal_task=task1_multi_perspective,
-            cahier_des_charges=cahier_des_charges
+            multi_perspective_proposal_task=task1_multi_perspective
         )
 
         # TOUR 3 : Défense et Amélioration
+        # ✅ Pas de cahier_des_charges → agents utilisent RAG + contexte de task2
         task3_defense = DebateTasks.defense_and_improvement(
             innovateur=self.innovateur,
             stratege=self.stratege,
-            first_critique_round_task=task2_first_critique,
-            cahier_des_charges=cahier_des_charges
+            first_critique_round_task=task2_first_critique
         )
 
         # TOUR 4 : Second Round de Challenge Intensif
+        # ✅ Pas de cahier_des_charges → agents utilisent RAG + contexte de task3
         task4_challenge = DebateTasks.intensive_challenge(
             pragmatique=self.pragmatique,
-            defense_and_improvement_task=task3_defense,
-            cahier_des_charges=cahier_des_charges
+            defense_and_improvement_task=task3_defense
         )
 
         # TOUR 5 : Convergence Forcée
+        # ✅ Pas de cahier_des_charges → agents utilisent RAG + contexte de task4
         task5_convergence = DebateTasks.forced_convergence(
             innovateur=self.innovateur,
-            intensive_challenge_task=task4_challenge,
-            cahier_des_charges=cahier_des_charges
+            intensive_challenge_task=task4_challenge
         )
 
         # TOUR 6 : Synthèse et Validation Finale
+        # ✅ Pas de cahier_des_charges → Facilitateur (manager) utilise RAG + contexte complet
         task6_synthesis = DebateTasks.final_synthesis(
             facilitateur=self.facilitateur,
             all_previous_tasks=[
@@ -113,29 +118,27 @@ class MultiAgentDebateCrew:
                 task3_defense,
                 task4_challenge,
                 task5_convergence
-            ],
-            cahier_des_charges=cahier_des_charges
+            ]
         )
 
-        # Création de l'embedder OpenAI (utilise OPENAI_API_KEY depuis les variables d'environnement)
-        # Selon la doc CrewAI: https://docs.crewai.com/en/concepts/knowledge
-        # L'embedder lit automatiquement OPENAI_API_KEY depuis os.environ si non spécifié
-        embedder = OpenAIEmbeddings(
-            model="text-embedding-3-small"  # Modèle d'embedding OpenAI (plus économique que ada-002)
-            # openai_api_key sera lu automatiquement depuis OPENAI_API_KEY dans .env
-        )
+        # CONFIGURATION RAG - ChromaDB avec OpenAI Embeddings
+        # ChromaDB lit automatiquement OPENAI_API_KEY depuis .env
+        # Utilise text-embedding-3-small par défaut (économique et performant)
+        # Coût estimé : ~$0.002 par débat pour les embeddings
 
         # Création de la source de connaissance RAG pour le cahier des charges
-        # Permet aux agents de faire des requêtes sémantiques sur le cahier
-        # Utilise l'embedder OpenAI configuré ci-dessus
+        # StringKnowledgeSource stocke le cahier dans ChromaDB (base vectorielle)
+        # Les agents peuvent faire des requêtes sémantiques pour récupérer les exigences
         cahier_knowledge = StringKnowledgeSource(
             content=cahier_des_charges,
-            metadata={"source": "cahier_des_charges", "type": "requirements"},
-            embedder=embedder
+            metadata={"source": "cahier_des_charges", "type": "requirements"}
+            # Pas d'embedder explicite → ChromaDB utilise OpenAI par défaut
         )
 
-        # Assigner le knowledge à chaque agent individuellement
-        # Utilise l'embedder OpenAI configuré ci-dessus (lit OPENAI_API_KEY depuis .env)
+        # ASSIGNATION DU KNOWLEDGE AUX AGENTS
+        # Chaque agent reçoit individuellement l'accès à la source de connaissance
+        # Selon la doc CrewAI: https://docs.crewai.com/en/concepts/knowledge
+        # Les agents peuvent maintenant faire des recherches sémantiques dans le cahier
         for agent in [self.innovateur, self.pragmatique, self.avocat_du_diable, self.stratege, self.facilitateur]:
             agent.knowledge_sources = [cahier_knowledge]
 
