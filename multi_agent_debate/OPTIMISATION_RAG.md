@@ -47,10 +47,20 @@ cahier_knowledge = StringKnowledgeSource(
     metadata={"source": "cahier_des_charges", "type": "requirements"}
 )
 
-# Attribution aux agents
+# Attribution aux agents (pour accès individuel)
 for agent in [innovateur, pragmatique, avocat_du_diable, stratege, facilitateur]:
     agent.knowledge_sources = [cahier_knowledge]
+
+# 🔑 CRITIQUE : Attribution au Crew (pour accès global, surtout en mode hiérarchique)
+crew = Crew(
+    agents=[...],
+    tasks=[...],
+    knowledge_sources=[cahier_knowledge],  # ← INDISPENSABLE pour processus hiérarchique
+    memory=True
+)
 ```
+
+**Important :** En mode hiérarchique, il faut ABSOLUMENT passer `knowledge_sources` au Crew ET aux agents.
 
 ### 2. Accès automatique par les agents
 
@@ -133,6 +143,56 @@ crew = Crew(
 ⚠️ **Dépendance OpenAI** : Par défaut, utilise les embeddings OpenAI (configurable)
 ⚠️ **Latence** : Légère latence pour les requêtes vectorielles (négligeable)
 ⚠️ **Storage local** : Les embeddings sont stockés localement (gérer l'espace disque)
+
+## Troubleshooting
+
+### ❌ Problème : "Je ne peux pas lancer... tant que vous ne fournissez pas le cahier des charges"
+
+**Symptôme :** Le manager demande le cahier des charges au lieu d'utiliser le RAG.
+
+**Causes possibles :**
+1. ❌ `knowledge_sources` n'est PAS passé au Crew (seulement aux agents)
+2. ❌ `cahier_des_charges` est encore passé dans `kickoff(inputs={...})`
+3. ❌ Les tasks mentionnent le cahier sans indiquer qu'il est dans la KB
+
+**Solutions :**
+```python
+# ✅ CORRECT :
+crew = Crew(
+    agents=[...],
+    tasks=[...],
+    knowledge_sources=[cahier_knowledge],  # ← À NE PAS OUBLIER !
+    memory=True
+)
+
+result = crew.kickoff()  # ← Pas d'inputs !
+
+# ❌ INCORRECT :
+crew = Crew(
+    agents=[...],
+    tasks=[...],
+    # knowledge_sources manquant !
+    memory=True
+)
+
+result = crew.kickoff(inputs={'cahier_des_charges': cahier})  # ← À SUPPRIMER !
+```
+
+### ❌ Problème : "ModuleNotFoundError: No module named 'crewai'"
+
+**Solution :**
+```bash
+pip install -r requirements.txt
+# ou
+pip install crewai>=0.98.0 crewai-tools>=0.12.0
+```
+
+### ❌ Problème : Le RAG ne récupère pas les bonnes informations
+
+**Solutions :**
+1. Vérifier que `OPENAI_API_KEY` est définie (pour les embeddings)
+2. Nettoyer le cache ChromaDB : `crewai reset-memories --knowledge`
+3. Augmenter le `results_limit` dans KnowledgeConfig
 
 ## Configuration avancée
 

@@ -177,9 +177,11 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
-            memory=True  # NÉCESSAIRE pour processus hiérarchique - permet transmission contexte entre tâches
+            memory=True,  # NÉCESSAIRE pour processus hiérarchique - permet transmission contexte entre tâches
+            knowledge_sources=[cahier_knowledge],  # 🔑 CRITIQUE : Knowledge au niveau du Crew pour accès global
             # NOTA IMPORTANTE SUR L'ARCHITECTURE :
             # - RAG (Knowledge Base) : Stocke le cahier des charges (270 lignes) → Accès via requêtes sémantiques
+            #   → knowledge_sources passé au Crew ET aux agents pour accès universel
             # - Memory : Stocke les résultats des tâches précédentes → Transmission du contexte de débat
             # → Combinaison optimale : RAG pour les specs + Memory pour le flow de travail
             # → Économie massive : 270 lignes × 6 tasks = 1620 lignes non dupliquées dans les prompts
@@ -213,9 +215,10 @@ class MultiAgentDebateCrew:
         # Création et lancement du crew
         crew = self.create_crew(cahier_des_charges)
 
-        result = crew.kickoff(inputs={
-            'cahier_des_charges': cahier_des_charges
-        })
+        # Lancement du débat
+        # Note : cahier_des_charges n'est PAS passé en input car il est accessible via Knowledge Base (RAG)
+        # Les agents récupèrent automatiquement les informations via requêtes sémantiques
+        result = crew.kickoff()
 
         print("\n" + "="*80)
         print("✅ DÉBAT TERMINÉ")
