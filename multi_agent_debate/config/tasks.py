@@ -8,25 +8,26 @@ class DebateTasks:
     """Classe contenant toutes les tâches du système de débat."""
 
     @staticmethod
-    def multi_perspective_proposal(innovateur, stratege, cahier_des_charges: str) -> Task:
+    def multi_perspective_proposal(innovateur, stratege) -> Task:
         """
         TOUR 1 : Proposition Initiale Multi-Perspectives.
 
         Args:
             innovateur: L'agent Innovateur
             stratege: L'agent Stratège
-            cahier_des_charges: Le cahier des charges complet
 
         Returns:
             Task: La tâche configurée
         """
         return Task(
             description=f"""
-            CAHIER DES CHARGES :
-            {cahier_des_charges}
+            ACCÈS AU CAHIER DES CHARGES :
+            Le cahier des charges complet est disponible dans la base de connaissance (Knowledge/RAG).
+            Vous pouvez y accéder automatiquement - le système récupérera les informations pertinentes
+            lorsque vous en aurez besoin pour vos analyses et propositions.
 
             MISSION - DÉLÉGATION OBLIGATOIRE :
-            Vous devez analyser en détail le cahier des charges ci-dessus et produire des propositions initiales.
+            Vous devez analyser en détail le cahier des charges (via la base de connaissance) et produire des propositions initiales.
 
             ⚠️ CETTE TÂCHE NÉCESSITE LA DÉLÉGATION À 2 AGENTS :
             - l'innovateur (the innovator)

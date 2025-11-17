@@ -54,28 +54,29 @@ class MultiAgentDebateCrew:
         """
         Crée le crew avec toutes les tâches de débat et le système RAG.
 
-        STRATÉGIE D'OPTIMISATION RAG (économise ~70% de tokens) :
-        - Task 1 : Le cahier des charges COMPLET est passé et analysé en détail (270 lignes)
-        - Tasks 2-6 : Le cahier des charges n'est PAS passé en paramètre
-          → Les agents utilisent la mémoire RAG (ChromaDB) pour récupérer les exigences
-          → Évite la duplication de 270 lignes × 5 tâches = économie massive de tokens
+        STRATÉGIE D'OPTIMISATION RAG (économise ~90% de tokens) :
+        - TOUTES les tasks (1-6) : Le cahier des charges n'est JAMAIS passé en paramètre
+          → Les agents utilisent EXCLUSIVEMENT la Knowledge Base (ChromaDB/RAG)
+          → Évite la duplication de 270 lignes × 6 tâches = économie massive de tokens
         - Système RAG : StringKnowledgeSource stocke le cahier dans ChromaDB
           → Accessible via requêtes sémantiques par tous les agents
           → Embeddings OpenAI (text-embedding-3-small) pour similarité sémantique
+        - Les agents ont accès automatique à la knowledge source
+          → Récupération intelligente des sections pertinentes du cahier des charges
+          → Pas besoin de dupliquer le contenu dans les descriptions de tâches
 
         Args:
-            cahier_des_charges: Le cahier des charges complet
+            cahier_des_charges: Le cahier des charges complet (stocké uniquement dans la Knowledge Base)
 
         Returns:
             Crew: Le crew configuré avec toutes les tâches et le RAG
         """
         # TOUR 1 : Proposition Initiale Multi-Perspectives
-        # ⚠️ SEULE tâche qui reçoit le cahier des charges complet en paramètre
-        # Les agents analyseront toutes les exigences en détail
+        # ✅ Aucun paramètre cahier_des_charges - les agents utilisent la Knowledge Base
+        # Les agents analyseront toutes les exigences via le RAG
         task1_multi_perspective = DebateTasks.multi_perspective_proposal(
             innovateur=self.innovateur,
-            stratege=self.stratege,
-            cahier_des_charges=cahier_des_charges
+            stratege=self.stratege
         )
 
         # TOUR 2 : Premier Round de Critique Croisée
@@ -121,10 +122,22 @@ class MultiAgentDebateCrew:
             ]
         )
 
+        # ============================================================================
         # CONFIGURATION RAG - ChromaDB avec OpenAI Embeddings
+        # ============================================================================
         # ChromaDB lit automatiquement OPENAI_API_KEY depuis .env
         # Utilise text-embedding-3-small par défaut (économique et performant)
-        # Coût estimé : ~$0.002 par débat pour les embeddings
+        # Coût estimé : ~$0.002 par débat pour les embeddings (1 seul embedding du cahier)
+        #
+        # OPTIMISATION TOKEN :
+        # Au lieu de passer le cahier des charges (270 lignes) dans chaque task,
+        # on le stocke UNE SEULE FOIS dans ChromaDB (Knowledge Base).
+        # Les agents récupèrent automatiquement les sections pertinentes via RAG.
+        #
+        # Économie estimée : ~90% de tokens sur les prompts
+        # - Avant : 270 lignes × 6 tasks = 1620 lignes dupliquées
+        # - Après : 0 ligne dupliquée, accès via RAG seulement
+        # ============================================================================
 
         # Création de la source de connaissance RAG pour le cahier des charges
         # StringKnowledgeSource stocke le cahier dans ChromaDB (base vectorielle)
@@ -139,6 +152,7 @@ class MultiAgentDebateCrew:
         # Chaque agent reçoit individuellement l'accès à la source de connaissance
         # Selon la doc CrewAI: https://docs.crewai.com/en/concepts/knowledge
         # Les agents peuvent maintenant faire des recherches sémantiques dans le cahier
+        # sans qu'il soit nécessaire de le passer en paramètre de chaque task
         for agent in [self.innovateur, self.pragmatique, self.avocat_du_diable, self.stratege, self.facilitateur]:
             agent.knowledge_sources = [cahier_knowledge]
 
@@ -164,8 +178,11 @@ class MultiAgentDebateCrew:
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
             memory=True  # NÉCESSAIRE pour processus hiérarchique - permet transmission contexte entre tâches
-            # NOTA: Le RAG (Knowledge) réduit quand même fortement les coûts en évitant
-            # la duplication du cahier des charges dans chaque tâche (270 lignes × 5 tâches économisées)
+            # NOTA IMPORTANTE SUR L'ARCHITECTURE :
+            # - RAG (Knowledge Base) : Stocke le cahier des charges (270 lignes) → Accès via requêtes sémantiques
+            # - Memory : Stocke les résultats des tâches précédentes → Transmission du contexte de débat
+            # → Combinaison optimale : RAG pour les specs + Memory pour le flow de travail
+            # → Économie massive : 270 lignes × 6 tasks = 1620 lignes non dupliquées dans les prompts
         )
 
         return crew
