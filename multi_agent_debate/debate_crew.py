@@ -163,7 +163,9 @@ class MultiAgentDebateCrew:
             process=Process.hierarchical,
             manager_agent=self.facilitateur,  # Le Facilitateur gère les autres agents
             verbose=True,
-            memory=False  # DÉSACTIVÉ - On utilise le RAG (Knowledge) à la place pour économiser tokens
+            memory=True  # NÉCESSAIRE pour processus hiérarchique - permet transmission contexte entre tâches
+            # NOTA: Le RAG (Knowledge) réduit quand même fortement les coûts en évitant
+            # la duplication du cahier des charges dans chaque tâche (270 lignes × 5 tâches économisées)
         )
 
         return crew
