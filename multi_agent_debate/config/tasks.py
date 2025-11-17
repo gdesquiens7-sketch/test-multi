@@ -137,9 +137,11 @@ class DebateTasks:
 
             RÈGLES DU DÉBAT :
             1. Débattez entre vous sur le niveau de criticité de chaque point
-            2. Citez les exigences du cahier des charges qui posent problème
-            3. Priorisez les risques (critique / important / mineur)
-            4. Argumentez vos positions de manière constructive
+            2. Utilisez la délégation pour consulter les autres agents si nécessaire
+            3. Utilisez la mémoire partagée (RAG) pour récupérer le cahier des charges complet
+            4. Citez les exigences du cahier des charges qui posent problème
+            5. Priorisez les risques (critique / important / mineur)
+            6. Argumentez vos positions de manière constructive
             """,
             expected_output="""
             **RAPPORT : CRITIQUE CROISÉE DES PROPOSITIONS**
@@ -242,8 +244,10 @@ class DebateTasks:
             RÈGLES DU DÉBAT :
             1. Adressez CHAQUE critique reçue (acceptation ou contre-argument)
             2. Proposez des PROPOSITIONS V2 améliorées
-            3. Mettez à jour la matrice de conformité
-            4. Documentez les compromis effectués
+            3. Utilisez la délégation pour consulter les autres agents si nécessaire
+            4. Utilisez la mémoire partagée pour récupérer le cahier des charges complet
+            5. Mettez à jour la matrice de conformité
+            6. Documentez les compromis effectués
             """,
             expected_output="""
             **RAPPORT : DÉFENSE ET PROPOSITIONS V2**
@@ -356,10 +360,12 @@ class DebateTasks:
             4. Validation collective que TOUTES les exigences sont adressées
 
             RÈGLES DU DÉBAT :
-            1. Utilisez la DÉLÉGATION pour impliquer tous les agents
-            2. Débat ouvert et contradictoire
-            3. Citez les exigences problématiques
-            4. Documentez convergences ET divergences
+            1. Utilisez la DÉLÉGATION (Ask question to coworker) pour impliquer tous les agents
+            2. Chaque agent doit être consulté via délégation pour obtenir sa perspective
+            3. Utilisez la mémoire partagée pour accéder au cahier des charges et à l'historique
+            4. Débat ouvert et contradictoire
+            5. Citez les exigences problématiques (récupérez-les via RAG si nécessaire)
+            6. Documentez convergences ET divergences
             """,
             expected_output="""
             **RAPPORT : CHALLENGE INTENSIF DES PROPOSITIONS V2**
@@ -486,8 +492,10 @@ class DebateTasks:
             3. La solution DOIT couvrir 100% des exigences du cahier des charges
             4. Si une exigence ne peut être couverte → justification collective OBLIGATOIRE
             5. Tous les désaccords résiduels doivent être résolus ou documentés
+            6. Utilisez la DÉLÉGATION pour consulter tous les agents et obtenir leur accord
+            7. Utilisez la mémoire partagée (RAG) pour récupérer le cahier des charges complet
 
-            CHAQUE AGENT doit :
+            CHAQUE AGENT doit être consulté via délégation :
             - L'INNOVATEUR : Accepter des compromis sur l'innovation si nécessaire
             - LE PRAGMATIQUE : Trouver des solutions pour rendre faisable
             - L'AVOCAT DU DIABLE : Valider que les compromis ne créent pas de failles critiques
@@ -497,6 +505,7 @@ class DebateTasks:
             - UNE solution unique consensuelle
             - 100% de conformité au cahier des charges (ou justifications)
             - Documentation des compromis de chaque agent
+            - Consensus obtenu via délégation avec tous les agents
             """,
             expected_output="""
             **RAPPORT : SOLUTION FINALE CONSENSUELLE**
@@ -648,22 +657,38 @@ class DebateTasks:
             pour valider chaque exigence point par point dans votre synthèse finale.
 
             HISTORIQUE COMPLET DU DÉBAT :
-            Vous avez accès à tous les échanges précédents via le contexte.
+            Vous avez accès à tous les échanges précédents via le contexte des tâches précédentes.
+            Utilisez la mémoire partagée pour récupérer toutes les informations pertinentes.
 
             MISSION DU FACILITATEUR (MANAGER) :
             En tant que manager de ce débat, vous devez produire le DOCUMENT FINAL DE RECOMMANDATION.
 
+            AGENTS DISPONIBLES :
+            Vous avez accès à 4 agents workers que vous DEVEZ utiliser via la délégation :
+            - L'Innovateur (The Innovator) : pour valider les aspects innovants de la solution finale
+            - Le Pragmatique (The Pragmatist) : pour valider la faisabilité et les contraintes
+            - L'Avocat du Diable (The Devil's Advocate) : pour valider qu'il n'y a pas de failles critiques
+            - Le Stratège (The Strategist) : pour valider l'alignement stratégique et la valeur business
+            
+            INSTRUCTIONS CRITIQUES :
+            1. N'ATTENDEZ PAS de réponse de l'utilisateur - vous avez tous les agents nécessaires
+            2. Utilisez la délégation (Ask question to coworker) pour consulter chaque agent sur la solution finale
+            3. Consultez la mémoire partagée pour récupérer le cahier des charges et l'historique complet
+            4. Si une information manque, cherchez-la dans la mémoire ou les tâches précédentes
+            5. Produisez directement le document final sans demander de choix à l'utilisateur
+
             VOS RESPONSABILITÉS :
-            1. Synthétiser l'ensemble du processus de débat
-            2. Valider que la solution répond à 100% du cahier des charges (point par point)
-            3. Documenter le processus de convergence et les débats clés
-            4. Identifier les risques résiduels et plans de mitigation
-            5. Créer un document actionnable pour la mise en œuvre
+            1. Synthétiser l'ensemble du processus de débat en utilisant le contexte des tâches précédentes
+            2. Valider que la solution répond à 100% du cahier des charges (point par point) via RAG
+            3. Consulter chaque agent worker pour obtenir leur validation finale sur la solution
+            4. Documenter le processus de convergence et les débats clés
+            5. Identifier les risques résiduels et plans de mitigation
+            6. Créer un document actionnable pour la mise en œuvre
 
             VALIDATION OBLIGATOIRE :
-            - Vérifier CHAQUE exigence du cahier des charges
-            - S'assurer que tous les agents ont donné leur consensus
-            - Documenter tous les compromis effectués
+            - Vérifier CHAQUE exigence du cahier des charges (utilisez RAG pour les récupérer)
+            - Consulter TOUS les agents workers pour obtenir leur consensus final
+            - Documenter tous les compromis effectués (dans les tâches précédentes)
             - Identifier les risques et leurs mitigations
 
             FORMAT IMPOSÉ :
