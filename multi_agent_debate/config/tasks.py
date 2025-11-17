@@ -91,9 +91,7 @@ class DebateTasks:
             | Faisabilité perçue | ... | ... | ... |
             | Valeur stratégique | ... | ... | ... |
             | Taux conformité | X% | X% | X% |
-            """,
-            agent=innovateur,
-            async_execution=False
+            """
         )
 
     @staticmethod
@@ -197,9 +195,7 @@ class DebateTasks:
             - [Recommandation 1]
             - [Recommandation 2]
             """,
-            agent=pragmatique,
-            context=[multi_perspective_proposal_task],
-            async_execution=False
+            context=[multi_perspective_proposal_task]
         )
 
     @staticmethod
@@ -313,9 +309,7 @@ class DebateTasks:
             - Points encore en débat
             - Prochaines étapes
             """,
-            agent=innovateur,
-            context=[first_critique_round_task],
-            async_execution=False
+            context=[first_critique_round_task]
         )
 
     @staticmethod
@@ -452,9 +446,7 @@ class DebateTasks:
             - Propositions à fusionner ou éliminer
             - Axes d'amélioration finale
             """,
-            agent=pragmatique,
-            context=[defense_and_improvement_task],
-            async_execution=False
+            context=[defense_and_improvement_task]
         )
 
     @staticmethod
@@ -632,9 +624,7 @@ class DebateTasks:
             - [Indicateur 1] - Cible : X - Mesure : [Comment]
             - [Indicateur 2] - Cible : X - Mesure : [Comment]
             """,
-            agent=innovateur,
-            context=[intensive_challenge_task],
-            async_execution=False
+            context=[intensive_challenge_task]
         )
 
     @staticmethod
@@ -1017,7 +1007,5 @@ class DebateTasks:
 
             **FIN DU DOCUMENT DE RECOMMANDATION FINALE**
             """,
-            agent=facilitateur,
-            context=all_previous_tasks,
-            async_execution=False
+            context=all_previous_tasks
         )
